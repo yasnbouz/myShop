@@ -18,12 +18,13 @@
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
     "postinstall": "husky install",
+    "preinstall": "npx only-allow pnpm",
     "commit": "cz"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
-      "yarn lint --fix",
-      "yarn format"
+      "pnpm lint -- --fix",
+      "pnpm format"
     ]
   },
   "dependencies": {

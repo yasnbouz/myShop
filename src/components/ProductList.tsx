@@ -1,7 +1,4 @@
-import {
-  Product,
-  useGetProductsInCollectionQuery,
-} from '@/services/shopify/generated/types';
+import { Product, useGetProductsInCollectionQuery } from '@/services/shopify/generated/types';
 import { shopifyClient } from '@/services/shopify/lib/shopifyClient';
 import * as R from 'rambda';
 

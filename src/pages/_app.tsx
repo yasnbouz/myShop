@@ -30,9 +30,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   );
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        {getLayout(<Component {...pageProps} />)}
-      </Hydrate>
+      <Hydrate state={pageProps.dehydratedState}>{getLayout(<Component {...pageProps} />)}</Hydrate>
       <ReactQueryDevtools initialIsOpen />
     </QueryClientProvider>
   );

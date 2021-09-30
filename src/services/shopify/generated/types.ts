@@ -15,14 +15,8 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>;
 };
 
-function fetcher<TData, TVariables>(
-  client: GraphQLClient,
-  query: string,
-  variables?: TVariables,
-  headers?: RequestInit['headers'],
-) {
-  return async (): Promise<TData> =>
-    client.request<TData, TVariables>(query, variables, headers);
+function fetcher<TData, TVariables>(client: GraphQLClient, query: string, variables?: TVariables, headers?: RequestInit['headers']) {
+  return async (): Promise<TData> => client.request<TData, TVariables>(query, variables, headers);
 }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -3432,16 +3426,7 @@ export type MetafieldEdge = {
 };
 
 /** A resource that the metafield belongs to. */
-export type MetafieldParentResource =
-  | Article
-  | Blog
-  | Collection
-  | Customer
-  | Order
-  | Page
-  | Product
-  | ProductVariant
-  | Shop;
+export type MetafieldParentResource = Article | Blog | Collection | Customer | Order | Page | Product | ProductVariant | Shop;
 
 /** Metafield value types. */
 export enum MetafieldValueType {
@@ -5394,10 +5379,7 @@ export type SellingPlanPriceAdjustment = {
 };
 
 /** Represents by how much the price of a variant associated with a selling plan is adjusted. Each variant can have up to two price adjustments. */
-export type SellingPlanPriceAdjustmentValue =
-  | SellingPlanFixedAmountPriceAdjustment
-  | SellingPlanFixedPriceAdjustment
-  | SellingPlanPercentagePriceAdjustment;
+export type SellingPlanPriceAdjustmentValue = SellingPlanFixedAmountPriceAdjustment | SellingPlanFixedPriceAdjustment | SellingPlanPercentagePriceAdjustment;
 
 /** A shipping rate to be applied to a checkout. */
 export type ShippingRate = {
@@ -5958,10 +5940,7 @@ export const GetProductsInCollectionDocument = gql`
     }
   }
 `;
-export const useGetProductsInCollectionQuery = <
-  TData = GetProductsInCollectionQuery,
-  TError = unknown,
->(
+export const useGetProductsInCollectionQuery = <TData = GetProductsInCollectionQuery, TError = unknown>(
   client: GraphQLClient,
   variables: GetProductsInCollectionQueryVariables,
   options?: UseQueryOptions<GetProductsInCollectionQuery, TError, TData>,
@@ -5969,39 +5948,20 @@ export const useGetProductsInCollectionQuery = <
 ) =>
   useQuery<GetProductsInCollectionQuery, TError, TData>(
     ['getProductsInCollection', variables],
-    fetcher<
-      GetProductsInCollectionQuery,
-      GetProductsInCollectionQueryVariables
-    >(client, GetProductsInCollectionDocument, variables, headers),
+    fetcher<GetProductsInCollectionQuery, GetProductsInCollectionQueryVariables>(client, GetProductsInCollectionDocument, variables, headers),
     options,
   );
-useGetProductsInCollectionQuery.getKey = (
-  variables: GetProductsInCollectionQueryVariables,
-) => ['getProductsInCollection', variables];
+useGetProductsInCollectionQuery.getKey = (variables: GetProductsInCollectionQueryVariables) => ['getProductsInCollection', variables];
 
-export type SdkFunctionWrapper = <T>(
-  action: (requestHeaders?: Record<string, string>) => Promise<T>,
-  operationName: string,
-) => Promise<T>;
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?: Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
 
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
 
-export function getSdk(
-  client: GraphQLClient,
-  withWrapper: SdkFunctionWrapper = defaultWrapper,
-) {
+export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    getProductsInCollection(
-      variables: GetProductsInCollectionQueryVariables,
-      requestHeaders?: Dom.RequestInit['headers'],
-    ): Promise<GetProductsInCollectionQuery> {
+    getProductsInCollection(variables: GetProductsInCollectionQueryVariables, requestHeaders?: Dom.RequestInit['headers']): Promise<GetProductsInCollectionQuery> {
       return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<GetProductsInCollectionQuery>(
-            GetProductsInCollectionDocument,
-            variables,
-            { ...requestHeaders, ...wrappedRequestHeaders },
-          ),
+        (wrappedRequestHeaders) => client.request<GetProductsInCollectionQuery>(GetProductsInCollectionDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }),
         'getProductsInCollection',
       );
     },

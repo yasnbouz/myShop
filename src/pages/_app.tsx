@@ -24,7 +24,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     () =>
       new QueryClient({
         defaultOptions: {
-          queries: { cacheTime: Infinity, refetchOnWindowFocus: false },
+          queries: { cacheTime: Infinity, refetchOnWindowFocus: false, refetchOnMount: false },
         },
       }),
   );

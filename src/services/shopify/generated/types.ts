@@ -5,15 +5,9 @@ import { useQuery, UseQueryOptions } from 'react-query';
 import * as Dom from 'graphql-request/dist/types.dom';
 import { gql } from 'graphql-request';
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 
 function fetcher<TData, TVariables>(client: GraphQLClient, query: string, variables?: TVariables, headers?: RequestInit['headers']) {
   return async (): Promise<TData> => client.request<TData, TVariables>(query, variables, headers);
@@ -5867,6 +5861,37 @@ export enum WeightUnit {
   Pounds = 'POUNDS',
 }
 
+export type GetProductDetailQueryVariables = Exact<{
+  handle: Scalars['String'];
+}>;
+
+export type GetProductDetailQuery = {
+  __typename?: 'QueryRoot';
+  productByHandle?: Maybe<{
+    __typename?: 'Product';
+    id: string;
+    title: string;
+    description: string;
+    images: { __typename?: 'ImageConnection'; edges: Array<{ __typename?: 'ImageEdge'; node: { __typename?: 'Image'; originalSrc: any; altText?: Maybe<string> } }> };
+    priceRange: { __typename?: 'ProductPriceRange'; minVariantPrice: { __typename?: 'MoneyV2'; amount: any; currencyCode: CurrencyCode } };
+    options: Array<{ __typename?: 'ProductOption'; id: string; name: string; values: Array<string> }>;
+    variants: {
+      __typename?: 'ProductVariantConnection';
+      edges: Array<{
+        __typename?: 'ProductVariantEdge';
+        node: {
+          __typename?: 'ProductVariant';
+          id: string;
+          title: string;
+          priceV2: { __typename?: 'MoneyV2'; amount: any };
+          image?: Maybe<{ __typename?: 'Image'; altText?: Maybe<string>; originalSrc: any }>;
+          selectedOptions: Array<{ __typename?: 'SelectedOption'; name: string; value: string }>;
+        };
+      }>;
+    };
+  }>;
+};
+
 export type GetProductsInCollectionQueryVariables = Exact<{
   handle: Scalars['String'];
 }>;
@@ -5885,31 +5910,107 @@ export type GetProductsInCollectionQuery = {
           id: string;
           title: string;
           handle: string;
-          priceRange: {
-            __typename?: 'ProductPriceRange';
-            minVariantPrice: {
-              __typename?: 'MoneyV2';
-              amount: any;
-              currencyCode: CurrencyCode;
-            };
-          };
-          images: {
-            __typename?: 'ImageConnection';
-            edges: Array<{
-              __typename?: 'ImageEdge';
-              node: {
-                __typename?: 'Image';
-                altText?: Maybe<string>;
-                originalSrc: any;
-              };
-            }>;
-          };
+          priceRange: { __typename?: 'ProductPriceRange'; minVariantPrice: { __typename?: 'MoneyV2'; amount: any; currencyCode: CurrencyCode } };
+          images: { __typename?: 'ImageConnection'; edges: Array<{ __typename?: 'ImageEdge'; node: { __typename?: 'Image'; altText?: Maybe<string>; originalSrc: any } }> };
         };
       }>;
     };
   }>;
 };
 
+export type GetProductsSlugQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetProductsSlugQuery = {
+  __typename?: 'QueryRoot';
+  products: { __typename?: 'ProductConnection'; edges: Array<{ __typename?: 'ProductEdge'; node: { __typename?: 'Product'; handle: string } }> };
+};
+
+export const useGetProductDetailQuery = <TData = GetProductDetailQuery, TError = unknown>(
+  client: GraphQLClient,
+  variables: GetProductDetailQueryVariables,
+  options?: UseQueryOptions<GetProductDetailQuery, TError, TData>,
+  headers?: RequestInit['headers'],
+) =>
+  useQuery<GetProductDetailQuery, TError, TData>(
+    ['getProductDetail', variables],
+    fetcher<GetProductDetailQuery, GetProductDetailQueryVariables>(client, GetProductDetailDocument, variables, headers),
+    options,
+  );
+useGetProductDetailQuery.getKey = (variables: GetProductDetailQueryVariables) => ['getProductDetail', variables];
+
+export const useGetProductsInCollectionQuery = <TData = GetProductsInCollectionQuery, TError = unknown>(
+  client: GraphQLClient,
+  variables: GetProductsInCollectionQueryVariables,
+  options?: UseQueryOptions<GetProductsInCollectionQuery, TError, TData>,
+  headers?: RequestInit['headers'],
+) =>
+  useQuery<GetProductsInCollectionQuery, TError, TData>(
+    ['getProductsInCollection', variables],
+    fetcher<GetProductsInCollectionQuery, GetProductsInCollectionQueryVariables>(client, GetProductsInCollectionDocument, variables, headers),
+    options,
+  );
+useGetProductsInCollectionQuery.getKey = (variables: GetProductsInCollectionQueryVariables) => ['getProductsInCollection', variables];
+
+export const useGetProductsSlugQuery = <TData = GetProductsSlugQuery, TError = unknown>(
+  client: GraphQLClient,
+  variables?: GetProductsSlugQueryVariables,
+  options?: UseQueryOptions<GetProductsSlugQuery, TError, TData>,
+  headers?: RequestInit['headers'],
+) =>
+  useQuery<GetProductsSlugQuery, TError, TData>(
+    variables === undefined ? ['getProductsSlug'] : ['getProductsSlug', variables],
+    fetcher<GetProductsSlugQuery, GetProductsSlugQueryVariables>(client, GetProductsSlugDocument, variables, headers),
+    options,
+  );
+useGetProductsSlugQuery.getKey = (variables?: GetProductsSlugQueryVariables) => (variables === undefined ? ['getProductsSlug'] : ['getProductsSlug', variables]);
+
+export const GetProductDetailDocument = gql`
+  query getProductDetail($handle: String!) {
+    productByHandle(handle: $handle) {
+      id
+      title
+      description
+      images(first: 5) {
+        edges {
+          node {
+            originalSrc
+            altText
+          }
+        }
+      }
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      options(first: 5) {
+        id
+        name
+        values
+      }
+      variants(first: 25) {
+        edges {
+          node {
+            id
+            title
+            priceV2 {
+              amount
+            }
+            image {
+              altText
+              originalSrc
+            }
+            selectedOptions {
+              name
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 export const GetProductsInCollectionDocument = gql`
   query getProductsInCollection($handle: String!) {
     collectionByHandle(handle: $handle) {
@@ -5940,18 +6041,17 @@ export const GetProductsInCollectionDocument = gql`
     }
   }
 `;
-export const useGetProductsInCollectionQuery = <TData = GetProductsInCollectionQuery, TError = unknown>(
-  client: GraphQLClient,
-  variables: GetProductsInCollectionQueryVariables,
-  options?: UseQueryOptions<GetProductsInCollectionQuery, TError, TData>,
-  headers?: RequestInit['headers'],
-) =>
-  useQuery<GetProductsInCollectionQuery, TError, TData>(
-    ['getProductsInCollection', variables],
-    fetcher<GetProductsInCollectionQuery, GetProductsInCollectionQueryVariables>(client, GetProductsInCollectionDocument, variables, headers),
-    options,
-  );
-useGetProductsInCollectionQuery.getKey = (variables: GetProductsInCollectionQueryVariables) => ['getProductsInCollection', variables];
+export const GetProductsSlugDocument = gql`
+  query getProductsSlug {
+    products(first: 25, sortKey: TITLE) {
+      edges {
+        node {
+          handle
+        }
+      }
+    }
+  }
+`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?: Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
 
@@ -5959,10 +6059,22 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    getProductDetail(variables: GetProductDetailQueryVariables, requestHeaders?: Dom.RequestInit['headers']): Promise<GetProductDetailQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) => client.request<GetProductDetailQuery>(GetProductDetailDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }),
+        'getProductDetail',
+      );
+    },
     getProductsInCollection(variables: GetProductsInCollectionQueryVariables, requestHeaders?: Dom.RequestInit['headers']): Promise<GetProductsInCollectionQuery> {
       return withWrapper(
         (wrappedRequestHeaders) => client.request<GetProductsInCollectionQuery>(GetProductsInCollectionDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }),
         'getProductsInCollection',
+      );
+    },
+    getProductsSlug(variables?: GetProductsSlugQueryVariables, requestHeaders?: Dom.RequestInit['headers']): Promise<GetProductsSlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) => client.request<GetProductsSlugQuery>(GetProductsSlugDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }),
+        'getProductsSlug',
       );
     },
   };

@@ -8,6 +8,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import 'the-new-css-reset/css/reset.css';
 // eslint-disable-next-line import/no-unresolved
 import 'windi.css';
+import '../styles/global.css';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;

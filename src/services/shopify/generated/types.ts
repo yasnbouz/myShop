@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { GraphQLClient } from 'graphql-request';
 import { RequestInit } from 'graphql-request/dist/types.dom';
-import { useQuery, UseQueryOptions } from 'react-query';
+import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from 'react-query';
 import * as Dom from 'graphql-request/dist/types.dom';
 import { gql } from 'graphql-request';
 export type Maybe<T> = T | null;
@@ -5861,6 +5861,15 @@ export enum WeightUnit {
   Pounds = 'POUNDS',
 }
 
+export type CheckoutCreateMutationVariables = Exact<{
+  input: CheckoutCreateInput;
+}>;
+
+export type CheckoutCreateMutation = {
+  __typename?: 'Mutation';
+  checkoutCreate?: Maybe<{ __typename?: 'CheckoutCreatePayload'; checkout?: Maybe<{ __typename?: 'Checkout'; id: string; webUrl: any }> }>;
+};
+
 export type GetProductDetailQueryVariables = Exact<{
   handle: Scalars['String'];
 }>;
@@ -5925,6 +5934,15 @@ export type GetProductsSlugQuery = {
   products: { __typename?: 'ProductConnection'; edges: Array<{ __typename?: 'ProductEdge'; node: { __typename?: 'Product'; handle: string } }> };
 };
 
+export const useCheckoutCreateMutation = <TError = unknown, TContext = unknown>(
+  client: GraphQLClient,
+  options?: UseMutationOptions<CheckoutCreateMutation, TError, CheckoutCreateMutationVariables, TContext>,
+  headers?: RequestInit['headers'],
+) =>
+  useMutation<CheckoutCreateMutation, TError, CheckoutCreateMutationVariables, TContext>(
+    (variables?: CheckoutCreateMutationVariables) => fetcher<CheckoutCreateMutation, CheckoutCreateMutationVariables>(client, CheckoutCreateDocument, variables, headers)(),
+    options,
+  );
 export const useGetProductDetailQuery = <TData = GetProductDetailQuery, TError = unknown>(
   client: GraphQLClient,
   variables: GetProductDetailQueryVariables,
@@ -5964,6 +5982,16 @@ export const useGetProductsSlugQuery = <TData = GetProductsSlugQuery, TError = u
   );
 useGetProductsSlugQuery.getKey = (variables?: GetProductsSlugQueryVariables) => (variables === undefined ? ['getProductsSlug'] : ['getProductsSlug', variables]);
 
+export const CheckoutCreateDocument = gql`
+  mutation checkoutCreate($input: CheckoutCreateInput!) {
+    checkoutCreate(input: $input) {
+      checkout {
+        id
+        webUrl
+      }
+    }
+  }
+`;
 export const GetProductDetailDocument = gql`
   query getProductDetail($handle: String!) {
     productByHandle(handle: $handle) {
@@ -6059,6 +6087,12 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    checkoutCreate(variables: CheckoutCreateMutationVariables, requestHeaders?: Dom.RequestInit['headers']): Promise<CheckoutCreateMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) => client.request<CheckoutCreateMutation>(CheckoutCreateDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }),
+        'checkoutCreate',
+      );
+    },
     getProductDetail(variables: GetProductDetailQueryVariables, requestHeaders?: Dom.RequestInit['headers']): Promise<GetProductDetailQuery> {
       return withWrapper(
         (wrappedRequestHeaders) => client.request<GetProductDetailQuery>(GetProductDetailDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }),

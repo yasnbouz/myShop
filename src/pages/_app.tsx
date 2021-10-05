@@ -4,6 +4,8 @@ import type { AppProps } from 'next/app';
 import { useState } from 'react';
 import { QueryClientProvider, QueryClient, Hydrate } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { CartProvider } from 'react-use-cart';
+import Router, { useRouter } from 'next/router';
 
 import 'the-new-css-reset/css/reset.css';
 // eslint-disable-next-line import/no-unresolved
@@ -19,6 +21,7 @@ type AppPropsWithLayout = AppProps & {
 };
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const router = useRouter();
   const getLayout = Component.getLayout ?? ((page) => page);
 
   const [queryClient] = useState(
@@ -31,7 +34,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   );
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>{getLayout(<Component {...pageProps} />)}</Hydrate>
+      <Hydrate state={pageProps.dehydratedState}>
+        <CartProvider>{getLayout(<Component {...pageProps} key={router.asPath} />)}</CartProvider>,
+      </Hydrate>
       <ReactQueryDevtools initialIsOpen />
     </QueryClientProvider>
   );

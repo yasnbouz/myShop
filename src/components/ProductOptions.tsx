@@ -11,16 +11,10 @@ extend([namesPlugin]);
 type ProductOptionsProps = {
   product: Product;
   selectedOptions: SelectedOptions;
-  setSelectedOptions: Dispatch<SetStateAction<SelectedOptions>>;
+  setSelectedOptions(name: string, value: string): void;
 };
 
 export default function ProductOptions({ product, selectedOptions, setSelectedOptions }: ProductOptionsProps) {
-  const handleOptionChange = (name: string, value: string) => {
-    setSelectedOptions((prevState) => ({
-      ...prevState,
-      [name.toLowerCase()]: value.toLowerCase(),
-    }));
-  };
   return (
     <div className="space-y-8">
       {product.options.map((o) => (
@@ -37,7 +31,7 @@ export default function ProductOptions({ product, selectedOptions, setSelectedOp
                   value={value.toLowerCase()}
                   color={color || ``}
                   active={active === value.toLowerCase()}
-                  setSelectedOptions={() => handleOptionChange(o.name, value)}
+                  setSelectedOptions={() => setSelectedOptions(o.name, value)}
                 />
               );
             })}

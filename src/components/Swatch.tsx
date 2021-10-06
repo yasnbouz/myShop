@@ -13,9 +13,10 @@ export default function Swatch({ setSelectedOptions, value, color, active }: Swa
       <button
         type="button"
         onClick={setSelectedOptions}
-        className={clsx(`shadow-lg text-white h-8 w-8 bg-dark-100 flex justify-center items-center uppercase tracking-wide p-5 rounded-full border-2 border-transparent`, {
-          'border-amber-500 text-amber-500 font-bold': active,
-          'bg-gray-800': !color,
+        className={clsx(`flex justify-center items-center uppercase tracking-wide border-2 border-light-400`, {
+          'h-8 w-8 rounded-full p-5': color,
+          'text-sm text-gray-900 w-16 h-16 p-8 rounded-lg': !color,
+          '!border-amber-500 text-amber-500 font-bold': active,
         })}
         style={{ backgroundColor: color }}
       >

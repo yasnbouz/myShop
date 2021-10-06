@@ -16,7 +16,8 @@ export default function ProductContent({ product }: ProductContentProps) {
 
     return {
       id: variant.node.id,
-      title: variant.node.title,
+      handle: product.handle,
+      name: product.title,
       price: variant.node.priceV2.amount,
       image: variant.node.image,
       quantity: 1,
@@ -54,6 +55,7 @@ export default function ProductContent({ product }: ProductContentProps) {
       <p className="mb-8 text-2xl font-bold text-gray-900">{formatCurrencyValue.format(product.priceRange.minVariantPrice.amount)}</p>
       <ProductOptions product={product} selectedOptions={selectedOptions} setSelectedOptions={handleOptionChange} />
       <button
+        suppressHydrationWarning
         onClick={addToCart}
         type="button"
         className="bg-black text-gray-200 min-w-360px text-center uppercase tracking-wide font-medium px-8 py-4 mt-8 rounded-lg hover:(bg-dark-900) active:(bg-dark-800)"

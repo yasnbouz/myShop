@@ -3,6 +3,7 @@ query getProductDetail($handle: String!) {
     id
     title
     description
+    handle
     images(first: 5) {
       edges {
         node {

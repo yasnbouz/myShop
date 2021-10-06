@@ -13,7 +13,7 @@ type CartProps = {
   setCartOpen: Dispatch<SetStateAction<boolean>>;
 };
 export default function Example({ cartOpen, setCartOpen }: CartProps) {
-  const { items, removeItem, cartTotal, updateItemQuantity, checkout } = useShopify();
+  const { items, removeItem, cartTotal, updateItemQuantity, checkout, isEmpty } = useShopify();
   return (
     <Transition.Root show={cartOpen} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 overflow-hidden z-5" onClose={setCartOpen}>
@@ -55,54 +55,58 @@ export default function Example({ cartOpen, setCartOpen }: CartProps) {
 
                     <div className="mt-8">
                       <div className="flow-root">
-                        <ul className="-my-6 divide-y divide-gray-200">
-                          {items.map((product) => (
-                            <li key={product.id} className="py-6 flex">
-                              <Link href={`/products/${product.handle}`}>
-                                <a className="relative cursor-pointer flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
-                                  <Image src={product.image.originalSrc} alt={product.image.altText} layout="fill" objectFit="cover" />
-                                </a>
-                              </Link>
-                              <div className="ml-4 flex-1 flex flex-col">
-                                <div>
-                                  <div className="flex justify-between text-base font-medium text-gray-900">
-                                    <h3>{product.name}</h3>
-                                    <p className="ml-4">{formatCurrencyValue.format(product.price * Number(product.quantity))}</p>
+                        {isEmpty ? (
+                          <p className="text-lg text-center mt-80">Nothing in your cart!</p>
+                        ) : (
+                          <ul className="-my-6 divide-y divide-gray-200">
+                            {items.map((product) => (
+                              <li key={product.id} className="py-6 flex">
+                                <Link href={`/products/${product.handle}`}>
+                                  <a className="relative cursor-pointer flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
+                                    <Image src={product.image.originalSrc} alt={product.image.altText} layout="fill" objectFit="cover" />
+                                  </a>
+                                </Link>
+                                <div className="ml-4 flex-1 flex flex-col">
+                                  <div>
+                                    <div className="flex justify-between text-base font-medium text-gray-900">
+                                      <h3>{product.name}</h3>
+                                      <p className="ml-4">{formatCurrencyValue.format(product.price * Number(product.quantity))}</p>
+                                    </div>
+                                    <p className="mt-1 space-x-4 flex flex-row items-center">
+                                      <span className="h-6 w-6 border inline-block rounded-full" style={{ backgroundColor: colord(product.options.color).toHslString() }} />
+                                      <span className="border-1 px-2 text-sm rounded-sm">{String(product.options.size).toUpperCase()}</span>
+                                    </p>
                                   </div>
-                                  <p className="mt-1 space-x-4 flex flex-row items-center">
-                                    <span className="h-6 w-6 border inline-block rounded-full" style={{ backgroundColor: colord(product.options.color).toHslString() }} />
-                                    <span className="border-1 px-2 text-sm rounded-sm">{String(product.options.size).toUpperCase()}</span>
-                                  </p>
-                                </div>
-                                <div className="flex-1 flex items-end justify-between text-sm">
-                                  <div className="flex space-x-4">
-                                    <button
-                                      type="button"
-                                      className="border border-light-900 rounded-sm h-6 w-6 text-center"
-                                      onClick={() => updateItemQuantity(product.id, Number(product.quantity) - 1)}
-                                    >
-                                      -
-                                    </button>
-                                    <p className="text-gray-500">Qty {product.quantity}</p>
-                                    <button
-                                      type="button"
-                                      className="border border-light-900 rounded-sm h-6 w-6 text-center"
-                                      onClick={() => updateItemQuantity(product.id, Number(product.quantity) + 1)}
-                                    >
-                                      +
-                                    </button>
-                                  </div>
+                                  <div className="flex-1 flex items-end justify-between text-sm">
+                                    <div className="flex space-x-4">
+                                      <button
+                                        type="button"
+                                        className="border border-light-900 rounded-sm h-6 w-6 text-center"
+                                        onClick={() => updateItemQuantity(product.id, Number(product.quantity) - 1)}
+                                      >
+                                        -
+                                      </button>
+                                      <p className="text-gray-500">Qty {product.quantity}</p>
+                                      <button
+                                        type="button"
+                                        className="border border-light-900 rounded-sm h-6 w-6 text-center"
+                                        onClick={() => updateItemQuantity(product.id, Number(product.quantity) + 1)}
+                                      >
+                                        +
+                                      </button>
+                                    </div>
 
-                                  <div className="flex">
-                                    <button onClick={() => removeItem(product.id)} type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
-                                      <IoTrashOutline size={24} className="text-red-600" />
-                                    </button>
+                                    <div className="flex">
+                                      <button onClick={() => removeItem(product.id)} type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                        <IoTrashOutline size={24} className="text-red-600" />
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
                     </div>
                   </div>

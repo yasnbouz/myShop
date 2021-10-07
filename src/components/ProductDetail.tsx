@@ -17,7 +17,7 @@ const ProductDetail = () => {
   const variables = { handle: `${router.query.pid}` };
   const { data } = useGetProductDetailQuery(shopifyClient, variables);
   return (
-    <section className="bg-[white]">
+    <div className="bg-[white]">
       <div className="container mx-auto px-4 py-16">
         <div className="flex flex-col space-y-4 items-center md:(flex-row space-y-0 items-start space-x-8) xl:(space-x-20)">
           <div className=" w-full relative h-510px lg:(w-1/2)">
@@ -40,7 +40,7 @@ const ProductDetail = () => {
         </div>
       </div>
       <RecommendedProducts current={data?.productByHandle?.id} products={data?.productByHandle?.collections.edges[0].node.products.edges as ProductEdge[]} />
-    </section>
+    </div>
   );
 };
 export default ProductDetail;

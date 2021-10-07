@@ -5,6 +5,7 @@ import { getSdk, useGetProductsInCollectionQuery } from '@/services/shopify/gene
 import ProductList from '@/components/ProductList';
 import { ReactElement } from 'react';
 import Layout from '@/components/Layout';
+import Hero from '@/components/Hero';
 
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ export const getStaticProps: GetStaticProps = async () => {
 export default function Home() {
   return (
     <div>
+      <Hero />
       <ProductList />
     </div>
   );

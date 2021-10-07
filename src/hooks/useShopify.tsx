@@ -22,7 +22,7 @@ const useShopify = () => {
 
   const checkout = async () => {
     const { items } = cart;
-    const lineItems = items.map((item) => ({ quantity: item.quantity, variantId: item.id }));
+    const lineItems: any = items.map((item) => ({ quantity: item.quantity, variantId: item.id }));
     const { checkoutCreate } = await mutation.mutateAsync({ input: { lineItems } });
 
     window.open(`${checkoutCreate?.checkout?.webUrl}`, `_blank`);

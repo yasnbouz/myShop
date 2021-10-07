@@ -21,3 +21,7 @@ input[type='radio'] {
 :focus:not(:focus-visible) {
   outline: 0;
 }
+.swiper {
+  --swiper-navigation-color: #272727;
+  --swiper-pagination-color: #272727;
+}

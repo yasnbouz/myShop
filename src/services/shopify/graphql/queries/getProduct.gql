@@ -8,6 +8,7 @@ query getProductDetail($handle: String!) {
       edges {
         node {
           originalSrc
+          thumbnail: transformedSrc(maxWidth: 150)
           altText
         }
       }

@@ -3,9 +3,8 @@ import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { useState } from 'react';
 import { QueryClientProvider, QueryClient, Hydrate } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { CartProvider } from 'react-use-cart';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 import 'the-new-css-reset/css/reset.css';
 // eslint-disable-next-line import/no-unresolved
@@ -37,7 +36,6 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <Hydrate state={pageProps.dehydratedState}>
         <CartProvider>{getLayout(<Component {...pageProps} key={router.asPath} />)}</CartProvider>,
       </Hydrate>
-      <ReactQueryDevtools initialIsOpen />
     </QueryClientProvider>
   );
 }

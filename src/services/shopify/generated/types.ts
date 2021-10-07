@@ -5882,7 +5882,10 @@ export type GetProductDetailQuery = {
     title: string;
     description: string;
     handle: string;
-    images: { __typename?: 'ImageConnection'; edges: Array<{ __typename?: 'ImageEdge'; node: { __typename?: 'Image'; originalSrc: any; altText?: Maybe<string> } }> };
+    images: {
+      __typename?: 'ImageConnection';
+      edges: Array<{ __typename?: 'ImageEdge'; node: { __typename?: 'Image'; originalSrc: any; altText?: Maybe<string>; thumbnail: any } }>;
+    };
     priceRange: { __typename?: 'ProductPriceRange'; minVariantPrice: { __typename?: 'MoneyV2'; amount: any; currencyCode: CurrencyCode } };
     options: Array<{ __typename?: 'ProductOption'; id: string; name: string; values: Array<string> }>;
     variants: {
@@ -6004,6 +6007,7 @@ export const GetProductDetailDocument = gql`
         edges {
           node {
             originalSrc
+            thumbnail: transformedSrc(maxWidth: 150)
             altText
           }
         }

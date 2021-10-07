@@ -1,5 +1,4 @@
 import { Product } from '@/services/shopify/generated/types';
-import { Dispatch, SetStateAction } from 'react';
 import { colord, extend } from 'colord';
 import namesPlugin from 'colord/plugins/names';
 

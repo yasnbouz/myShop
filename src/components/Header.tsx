@@ -2,7 +2,6 @@ import useShopify from '@/hooks/useShopify';
 import Link from 'next/link';
 import { AiOutlineShopping } from 'react-icons/ai';
 import Cart from '@/components/Cart';
-import { useState } from 'react';
 
 const Header = () => {
   const { totalItems, cartOpen, setCartOpen } = useShopify();

@@ -42,6 +42,7 @@ specifiers:
   react-icons: 4.2.0
   react-query: 3.24.4
   react-use-cart: 1.11.2
+  swiper: 7.0.8
   the-new-css-reset: 1.2.0
   typescript: 4.4.3
   windicss-webpack-plugin: 1.4.8
@@ -60,6 +61,7 @@ dependencies:
   react-icons: 4.2.0_react@17.0.2
   react-query: 3.24.4_react-dom@17.0.2+react@17.0.2
   react-use-cart: 1.11.2_react@17.0.2
+  swiper: 7.0.8
   the-new-css-reset: 1.2.0
 
 devDependencies:
@@ -3006,6 +3008,12 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dom7/4.0.0:
+    resolution: {integrity: sha512-xOJ0LAHFwktyj8Xljz4R2wzRI+Y9mR0plkMP0WlqtwqAkqn/vbdAyRifiW/w8mXe17LGktntcAwsQ5fKVDBNYg==}
+    dependencies:
+      ssr-window: 4.0.0
+    dev: false
 
   /domain-browser/1.2.0:
     resolution: {integrity: sha512-jnjyiM6eRyZl2H+W8Q/zLMA481hzi0eszAaBUzIVnmYVDBbnLxVNnfu1HgEBvCbL+71FrxMl3E6lpKH7Ge3OXA==}
@@ -6574,6 +6582,10 @@ packages:
     resolution: {integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=}
     dev: true
 
+  /ssr-window/4.0.0:
+    resolution: {integrity: sha512-qCg6wJNeGNTVcPK2KFNfwtHU1gA3UZDZdxogu+Ys5+Ue5PMOENxUb7sscpAWWo4mWOBkJRCwQ50IlyA7qZ0hxw==}
+    dev: false
+
   /stacktrace-parser/0.1.10:
     resolution: {integrity: sha512-KJP1OCML99+8fhOHxwwzyWrlUuVX5GQ0ZpJTd1DFXhdkrvg1szxfHhawXUZ3g9TkXORQd4/WG68jMlQZ2p8wlg==}
     engines: {node: '>=6'}
@@ -6872,6 +6884,15 @@ packages:
     dependencies:
       tslib: 2.3.1
     dev: true
+
+  /swiper/7.0.8:
+    resolution: {integrity: sha512-1IpWjHam98eTNiysi9MauvPHdLgrLesSYGd7JXvQEJkvW/NvI9gogMfRfbv+7jCK3+nIWuCpVnJmKCOBtJi4JA==}
+    engines: {node: '>= 4.7.0'}
+    requiresBuild: true
+    dependencies:
+      dom7: 4.0.0
+      ssr-window: 4.0.0
+    dev: false
 
   /symbol-observable/1.2.0:
     resolution: {integrity: sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==}

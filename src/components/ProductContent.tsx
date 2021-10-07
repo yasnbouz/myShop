@@ -50,9 +50,9 @@ export default function ProductContent({ product }: ProductContentProps) {
   };
   return (
     <div>
-      <h1 className="text-4xl mb-4 text-gray-900">{product.title}</h1>
-      <p className="text-lg mb-4 text-gray-900 max-w-60ch">{product.description}</p>
-      <p className="mb-8 text-2xl font-bold text-gray-900">{formatCurrencyValue.format(product.priceRange.minVariantPrice.amount)}</p>
+      <h1 className="text-4xl mb-4 font-medium text-gray-900">{product.title}</h1>
+      <p className="text-lg mb-4 font-normal text-gray-900 max-w-60ch">{product.description}</p>
+      <p className="mb-8 text-2xl font-medium  text-gray-900">{formatCurrencyValue.format(product.priceRange.minVariantPrice.amount)}</p>
       <ProductOptions product={product} selectedOptions={selectedOptions} setSelectedOptions={handleOptionChange} />
       <button
         suppressHydrationWarning

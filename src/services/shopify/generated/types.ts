@@ -5902,6 +5902,30 @@ export type GetProductDetailQuery = {
         };
       }>;
     };
+    collections: {
+      __typename?: 'CollectionConnection';
+      edges: Array<{
+        __typename?: 'CollectionEdge';
+        node: {
+          __typename?: 'Collection';
+          title: string;
+          products: {
+            __typename?: 'ProductConnection';
+            edges: Array<{
+              __typename?: 'ProductEdge';
+              node: {
+                __typename?: 'Product';
+                title: string;
+                handle: string;
+                id: string;
+                priceRange: { __typename?: 'ProductPriceRange'; minVariantPrice: { __typename?: 'MoneyV2'; amount: any } };
+                images: { __typename?: 'ImageConnection'; edges: Array<{ __typename?: 'ImageEdge'; node: { __typename?: 'Image'; originalSrc: any; altText?: Maybe<string> } }> };
+              };
+            }>;
+          };
+        };
+      }>;
+    };
   }>;
 };
 
@@ -6038,6 +6062,35 @@ export const GetProductDetailDocument = gql`
             selectedOptions {
               name
               value
+            }
+          }
+        }
+      }
+      collections(first: 1) {
+        edges {
+          node {
+            title
+            products(first: 5) {
+              edges {
+                node {
+                  title
+                  handle
+                  id
+                  priceRange {
+                    minVariantPrice {
+                      amount
+                    }
+                  }
+                  images(first: 1) {
+                    edges {
+                      node {
+                        originalSrc
+                        altText
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

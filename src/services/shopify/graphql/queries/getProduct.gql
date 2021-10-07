@@ -43,5 +43,34 @@ query getProductDetail($handle: String!) {
         }
       }
     }
+    collections(first: 1) {
+      edges {
+        node {
+          title
+          products(first: 5) {
+            edges {
+              node {
+                title
+                handle
+                id
+                priceRange {
+                  minVariantPrice {
+                    amount
+                  }
+                }
+                images(first: 1) {
+                  edges {
+                    node {
+                      originalSrc
+                      altText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

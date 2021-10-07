@@ -17,7 +17,7 @@ const ProductCard = ({ product }: Props) => {
           <Image src={originalSrc} layout="fill" alt={`${altText}`} objectFit="cover" />
         </a>
       </Link>
-      <h2 className="text-gray-900 text-lg font-bold mt-2 ml-4">{title}</h2>
+      <h3 className="text-gray-900 text-lg font-bold mt-2 ml-4">{title}</h3>
       <p className="text-gray-700 text-md font-medium mt-1 ml-4">{formatCurrencyValue.format(amount)}</p>
     </article>
   );

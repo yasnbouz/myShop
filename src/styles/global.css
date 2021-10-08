@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -13,4 +12,16 @@ a {
 
 * {
   box-sizing: border-box;
+}
+input[type='checkbox'],
+input[type='radio'] {
+  all: revert;
+}
+
+:focus:not(:focus-visible) {
+  outline: 0;
+}
+.swiper {
+  --swiper-navigation-color: #272727;
+  --swiper-pagination-color: #272727;
 }

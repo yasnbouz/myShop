@@ -1,0 +1,19 @@
+overwrite: true
+documents: 'src/services/**/graphql/**/*.{ts,gql,graphql}'
+generates:
+  src\services\shopify/generated/types.ts:
+    schema:
+      - https://${NEXT_PUBLIC_SHOPIFY_STORE_ID}.myshopify.com/api/2021-07/graphql.json:
+          headers:
+            X-Shopify-Storefront-Access-Token: ${NEXT_PUBLIC_SHOPIFY_API_TOKEN}
+    plugins:
+      - add:
+          content: '/* eslint-disable */'
+      - typescript
+      - typescript-operations
+      - typescript-react-query
+      - typescript-graphql-request
+    config:
+      fetcher: graphql-request
+      gqlImport: graphql-request#gql
+      exposeQueryKeys: true

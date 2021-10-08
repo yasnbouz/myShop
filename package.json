@@ -19,7 +19,8 @@
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
     "postinstall": "husky install",
     "preinstall": "npx only-allow pnpm",
-    "commit": "cz"
+    "commit": "cz",
+    "generate": "graphql-codegen -r dotenv/config -c codegen.yml dotenv_config_path=./.env.local"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
@@ -29,14 +30,30 @@
   },
   "dependencies": {
     "@headlessui/react": "1.4.1",
+    "clsx": "1.1.1",
+    "colord": "2.8.0",
+    "dotenv": "10.0.0",
+    "graphql": "15.6.0",
+    "graphql-request": "3.5.0",
     "next": "11.1.2",
+    "rambda": "6.9.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-icons": "4.2.0",
+    "react-query": "3.24.4",
+    "react-use-cart": "1.11.2",
+    "swiper": "7.0.8",
     "the-new-css-reset": "1.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "13.1.0",
     "@commitlint/config-conventional": "13.1.0",
+    "@graphql-codegen/add": "3.1.0",
+    "@graphql-codegen/cli": "2.2.0",
+    "@graphql-codegen/typescript": "2.2.2",
+    "@graphql-codegen/typescript-graphql-request": "4.1.4",
+    "@graphql-codegen/typescript-operations": "2.1.4",
+    "@graphql-codegen/typescript-react-query": "3.0.1",
     "@types/node": "14.17.15",
     "@types/react": "17.0.21",
     "@types/react-dom": "17.0.9",

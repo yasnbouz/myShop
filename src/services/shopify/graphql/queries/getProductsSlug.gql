@@ -1,0 +1,9 @@
+query getProductsSlug {
+  products(first: 25, sortKey: TITLE) {
+    edges {
+      node {
+        handle
+      }
+    }
+  }
+}

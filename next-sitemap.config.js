@@ -1,4 +1,4 @@
 module.exports = {
-  siteUrl: 'https://my-shop-yasnbouzi.vercel.app',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
   generateRobotsTxt: true,
 };

@@ -1,6 +1,6 @@
 const description = 'Learn how to build modern, SEO ready commerce storefronts with yasnbouz, Next.js, Shopify, and Vercel.';
 const title = 'Build Modern Commerce Experiences with a Shopify Storefront Api';
-const url = 'https://my-shop-yasnbouzi.vercel.app';
+const url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const SEO = {
   title,

@@ -2,10 +2,10 @@ import Layout from '@/components/Layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
-import { getSdk, useGetProductDetailQuery } from '@/services/shopify/generated/types';
-import { shopifyClient } from '@/services/shopify/lib/shopifyClient';
 import { dehydrate, QueryClient } from 'react-query';
 import ProductDetail from '@/components/ProductDetail';
+import { getProduct, getProductsSlugs } from '@/services/shopify/api';
+import { useGetProductQuery } from '@/services/shopify/generated/types';
 
 export default function ProductPage() {
   const router = useRouter();
@@ -22,24 +22,24 @@ export default function ProductPage() {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await getSdk(shopifyClient).getProductsSlug();
+  const data = await getProductsSlugs();
   const slugs = data.products?.edges ?? [];
   const paths = slugs.map((item) => ({ params: { pid: item.node.handle } }));
   return {
     paths,
-    fallback: false,
+    fallback: `blocking`,
   };
 };
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const queryClient = new QueryClient();
-  const sdk = getSdk(shopifyClient);
   const variables = { handle: `${ctx.params?.pid}` };
-  await queryClient.prefetchQuery(useGetProductDetailQuery.getKey(variables), () => sdk.getProductDetail(variables));
+  await queryClient.prefetchQuery(useGetProductQuery.getKey(variables), () => getProduct(variables));
 
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
+    revalidate: 10,
   };
 };
 ProductPage.getLayout = function getLayout(page: ReactElement) {

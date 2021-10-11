@@ -1,4 +1,4 @@
-query getProductsSlug {
+query getProductsSlugs {
   products(first: 25, sortKey: TITLE) {
     edges {
       node {

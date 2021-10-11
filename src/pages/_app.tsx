@@ -7,6 +7,7 @@ import { CartProvider } from 'react-use-cart';
 import { useRouter } from 'next/router';
 import { DefaultSeo } from 'next-seo';
 import { SEO } from 'next-seo.config';
+
 import 'the-new-css-reset/css/reset.css';
 // eslint-disable-next-line import/no-unresolved
 import 'windi.css';
@@ -39,7 +40,6 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           <DefaultSeo {...SEO} />
           {getLayout(<Component {...pageProps} key={router.asPath} />)}
         </CartProvider>
-        ,
       </Hydrate>
     </QueryClientProvider>
   );

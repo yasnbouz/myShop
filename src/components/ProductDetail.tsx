@@ -1,4 +1,4 @@
-import { Product, ProductEdge, useGetProductDetailQuery } from '@/services/shopify/generated/types';
+import { Product, ProductEdge, useGetProductQuery } from '@/services/shopify/generated/types';
 import { shopifyClient } from '@/services/shopify/lib/shopifyClient';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -17,7 +17,7 @@ import RecommendedProducts from './RecommendedProducts';
 const ProductDetail = () => {
   const router = useRouter();
   const variables = { handle: `${router.query.pid}` };
-  const { data } = useGetProductDetailQuery(shopifyClient, variables);
+  const { data } = useGetProductQuery(shopifyClient, variables);
   const product = data?.productByHandle;
   return (
     <>

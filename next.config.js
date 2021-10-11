@@ -6,8 +6,8 @@ module.exports = {
     domains: ['cdn.shopify.com'],
   },
   i18n: {
-    locales: ['en-US'],
-    defaultLocale: 'en-US',
+    locales: ['en'],
+    defaultLocale: 'en',
   },
   webpack(config) {
     config.plugins.push(new WindiCSS());

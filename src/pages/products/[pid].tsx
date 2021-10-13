@@ -23,7 +23,7 @@ export default function ProductPage() {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await getProductsSlugs();
-  const slugs = data.products?.edges ?? [];
+  const slugs = data.products?.edges.slice(0, 2) ?? [];
   const paths = slugs.map((item) => ({ params: { pid: item.node.handle } }));
   return {
     paths,

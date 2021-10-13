@@ -1,9 +1,8 @@
 import { Product, useGetProductsInCollectionQuery } from '@/services/shopify/generated/types';
-import { shopifyClient } from '@/services/shopify/lib/shopifyClient';
 import ProductCard from './ProductCard';
 
 const ProductList = () => {
-  const { data } = useGetProductsInCollectionQuery(shopifyClient, {
+  const { data } = useGetProductsInCollectionQuery({
     handle: `frontpage`,
   });
   const products = data?.collectionByHandle?.products.edges ?? [];

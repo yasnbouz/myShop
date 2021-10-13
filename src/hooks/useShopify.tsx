@@ -1,11 +1,10 @@
 import { useCheckoutCreateMutation } from '@/services/shopify/generated/types';
-import { shopifyClient } from '@/services/shopify/lib/shopifyClient';
 import { useEffect, useState } from 'react';
 import { useCart } from 'react-use-cart';
 
 const useShopify = () => {
   const [cartOpen, setCartOpen] = useState(false);
-  const mutation = useCheckoutCreateMutation(shopifyClient);
+  const mutation = useCheckoutCreateMutation();
   const cart = useCart();
 
   useEffect(() => {

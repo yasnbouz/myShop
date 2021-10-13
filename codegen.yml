@@ -13,6 +13,6 @@ generates:
       - typescript-operations
       - typescript-react-query
     config:
-      fetcher: graphql-request
+      fetcher: ../lib/shopifyClient#fetcher
       exposeQueryKeys: true
       exposeDocument: true

@@ -9,13 +9,12 @@ import { getProductsInCollection } from '@/services/shopify/api';
 
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
-
   const variables = { handle: `frontpage` };
-  await queryClient.prefetchQuery(useGetProductsInCollectionQuery.getKey(variables), () => getProductsInCollection(variables));
-
+  await queryClient.prefetchQuery(useGetProductsInCollectionQuery.getKey(variables), getProductsInCollection(variables));
+  const dehydratedState = await dehydrate(queryClient);
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      dehydratedState,
     },
     revalidate: 10,
   };

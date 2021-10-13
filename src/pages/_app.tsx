@@ -7,6 +7,7 @@ import { CartProvider } from 'react-use-cart';
 import { useRouter } from 'next/router';
 import { DefaultSeo } from 'next-seo';
 import { SEO } from 'next-seo.config';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import 'the-new-css-reset/css/reset.css';
 // eslint-disable-next-line import/no-unresolved
@@ -41,6 +42,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           {getLayout(<Component {...pageProps} key={router.asPath} />)}
         </CartProvider>
       </Hydrate>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

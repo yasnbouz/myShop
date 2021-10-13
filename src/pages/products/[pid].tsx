@@ -23,7 +23,7 @@ export default function ProductPage() {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await getProductsSlugs();
-  const slugs = data.products?.edges ?? [];
+  const slugs = data.products?.edges.slice(0, 2) ?? [];
   const paths = slugs.map((item) => ({ params: { pid: item.node.handle } }));
   return {
     paths,
@@ -33,11 +33,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const queryClient = new QueryClient();
   const variables = { handle: `${ctx.params?.pid}` };
-  await queryClient.prefetchQuery(useGetProductQuery.getKey(variables), () => getProduct(variables));
-
+  await queryClient.prefetchQuery(useGetProductQuery.getKey(variables), getProduct(variables));
+  const dehydratedState = dehydrate(queryClient);
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      dehydratedState,
     },
     revalidate: 10,
   };

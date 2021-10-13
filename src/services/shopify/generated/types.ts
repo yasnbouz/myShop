@@ -1,15 +1,10 @@
 /* eslint-disable */
-import { GraphQLClient } from 'graphql-request';
-import { RequestInit } from 'graphql-request/dist/types.dom';
 import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from 'react-query';
+import { fetcher } from '../lib/shopifyClient';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-
-function fetcher<TData, TVariables>(client: GraphQLClient, query: string, variables?: TVariables, headers?: RequestInit['headers']) {
-  return async (): Promise<TData> => client.request<TData, TVariables>(query, variables, headers);
-}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -5973,12 +5968,10 @@ export const CheckoutCreateDocument = `
 }
     `;
 export const useCheckoutCreateMutation = <TError = unknown, TContext = unknown>(
-  client: GraphQLClient,
   options?: UseMutationOptions<CheckoutCreateMutation, TError, CheckoutCreateMutationVariables, TContext>,
-  headers?: RequestInit['headers'],
 ) =>
   useMutation<CheckoutCreateMutation, TError, CheckoutCreateMutationVariables, TContext>(
-    (variables?: CheckoutCreateMutationVariables) => fetcher<CheckoutCreateMutation, CheckoutCreateMutationVariables>(client, CheckoutCreateDocument, variables, headers)(),
+    (variables?: CheckoutCreateMutationVariables) => fetcher<CheckoutCreateMutation, CheckoutCreateMutationVariables>(CheckoutCreateDocument, variables)(),
     options,
   );
 export const GetProductDocument = `
@@ -6059,13 +6052,8 @@ export const GetProductDocument = `
   }
 }
     `;
-export const useGetProductQuery = <TData = GetProductQuery, TError = unknown>(
-  client: GraphQLClient,
-  variables: GetProductQueryVariables,
-  options?: UseQueryOptions<GetProductQuery, TError, TData>,
-  headers?: RequestInit['headers'],
-) =>
-  useQuery<GetProductQuery, TError, TData>(['getProduct', variables], fetcher<GetProductQuery, GetProductQueryVariables>(client, GetProductDocument, variables, headers), options);
+export const useGetProductQuery = <TData = GetProductQuery, TError = unknown>(variables: GetProductQueryVariables, options?: UseQueryOptions<GetProductQuery, TError, TData>) =>
+  useQuery<GetProductQuery, TError, TData>(['getProduct', variables], fetcher<GetProductQuery, GetProductQueryVariables>(GetProductDocument, variables), options);
 useGetProductQuery.document = GetProductDocument;
 
 useGetProductQuery.getKey = (variables: GetProductQueryVariables) => ['getProduct', variables];
@@ -6101,14 +6089,12 @@ export const GetProductsInCollectionDocument = `
 }
     `;
 export const useGetProductsInCollectionQuery = <TData = GetProductsInCollectionQuery, TError = unknown>(
-  client: GraphQLClient,
   variables: GetProductsInCollectionQueryVariables,
   options?: UseQueryOptions<GetProductsInCollectionQuery, TError, TData>,
-  headers?: RequestInit['headers'],
 ) =>
   useQuery<GetProductsInCollectionQuery, TError, TData>(
     ['getProductsInCollection', variables],
-    fetcher<GetProductsInCollectionQuery, GetProductsInCollectionQueryVariables>(client, GetProductsInCollectionDocument, variables, headers),
+    fetcher<GetProductsInCollectionQuery, GetProductsInCollectionQueryVariables>(GetProductsInCollectionDocument, variables),
     options,
   );
 useGetProductsInCollectionQuery.document = GetProductsInCollectionDocument;
@@ -6127,14 +6113,12 @@ export const GetProductsSlugsDocument = `
 }
     `;
 export const useGetProductsSlugsQuery = <TData = GetProductsSlugsQuery, TError = unknown>(
-  client: GraphQLClient,
   variables?: GetProductsSlugsQueryVariables,
   options?: UseQueryOptions<GetProductsSlugsQuery, TError, TData>,
-  headers?: RequestInit['headers'],
 ) =>
   useQuery<GetProductsSlugsQuery, TError, TData>(
     variables === undefined ? ['getProductsSlugs'] : ['getProductsSlugs', variables],
-    fetcher<GetProductsSlugsQuery, GetProductsSlugsQueryVariables>(client, GetProductsSlugsDocument, variables, headers),
+    fetcher<GetProductsSlugsQuery, GetProductsSlugsQueryVariables>(GetProductsSlugsDocument, variables),
     options,
   );
 useGetProductsSlugsQuery.document = GetProductsSlugsDocument;

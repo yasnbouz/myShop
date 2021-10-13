@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://my-shop-yasnbouzi.vercel.app
+Host: https://my-shop-psi.vercel.app
 
 # Sitemaps
-Sitemap: https://my-shop-yasnbouzi.vercel.app/sitemap.xml
+Sitemap: https://my-shop-psi.vercel.app/sitemap.xml

@@ -33,3 +33,8 @@ jobs:
 
       - name: Check commits messages
         uses: wagoid/commitlint-github-action@v4
+
+      - name: lighthouse ci
+        run: pnpm --global add @lhci/cli@0.8.x
+      - name: run lighthouse
+        run: lhci autorun

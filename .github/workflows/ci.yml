@@ -65,7 +65,6 @@ jobs:
         with:
           urls: |
             ${{ needs.deploy.outputs.preview-url }}
-          budgetPath: ./budget.json
           configPath: './lighthouserc.json'
           serverBaseUrl: ${{ secrets.LHCI_SERVER_URL }}
           serverToken: ${{ secrets.LHCI_SERVER_TOKEN }}

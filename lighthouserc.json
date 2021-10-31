@@ -5,9 +5,6 @@
       "settings": {
         "chromeFlags": "--no-sandbox --ignore-certificate-errors"
       }
-    },
-    "assert": {
-      "preset": "lighthouse:recommended"
     }
   }
 }

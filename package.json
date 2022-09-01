@@ -25,12 +25,13 @@
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
-      "pnpm lint -- --fix",
+      "pnpm lint --fix",
       "pnpm format"
     ]
   },
   "dependencies": {
     "@headlessui/react": "1.4.1",
+    "@splidejs/react-splide": "0.7.8",
     "clsx": "1.1.1",
     "colord": "2.8.0",
     "dotenv": "10.0.0",
@@ -42,7 +43,6 @@
     "react-icons": "4.2.0",
     "react-query": "3.26.0",
     "react-use-cart": "1.11.2",
-    "swiper": "7.0.8",
     "the-new-css-reset": "1.2.0"
   },
   "devDependencies": {

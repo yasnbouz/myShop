@@ -1,16 +1,12 @@
 import { Product, ProductEdge, useGetProductQuery } from '@/services/shopify/generated/types';
-import { useRouter } from 'next/router';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-import { Navigation, Pagination, A11y } from 'swiper';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
+import '@splidejs/react-splide/css';
 import { NextSeo } from 'next-seo';
 import { defaultUrl } from 'next-seo.config';
 import ProductContent from './ProductContent';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import RecommendedProducts from './RecommendedProducts';
 
 const ProductDetail = () => {
@@ -22,15 +18,15 @@ const ProductDetail = () => {
     <>
       <div className="bg-[white]">
         <div className="container mx-auto px-4 py-16">
-          <div className="flex flex-col space-y-4 items-center md:(flex-row space-y-0 items-start space-x-8) xl:(space-x-20)">
-            <div className=" w-full relative h-510px lg:(w-1/2)">
-              <Swiper className="h-full rounded-3xl overflow-hidden" modules={[Pagination, Navigation, A11y]} navigation pagination={{ clickable: true }} slidesPerView={1}>
+          <div className="flex flex-col space-y-4 items-center lg:(flex-row space-y-0 items-start space-x-8) xl:(space-x-20)">
+            <div className="w-full relative h-510px lg:(w-1/2)">
+              <Splide options={{ height: `510px` }} className="h-full rounded-3xl overflow-hidden" aria-label={`${data?.productByHandle?.title} images`}>
                 {product?.images.edges.map((img) => (
-                  <SwiperSlide key={img.node.originalSrc}>
+                  <SplideSlide key={img.node.originalSrc}>
                     <Image src={`${img.node.originalSrc}`} alt={`${img.node.altText}`} layout="fill" objectFit="cover" />
-                  </SwiperSlide>
+                  </SplideSlide>
                 ))}
-              </Swiper>
+              </Splide>
             </div>
             <ProductContent product={product as unknown as Product} />
           </div>

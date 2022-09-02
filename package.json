@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@headlessui/react": "1.4.1",
+    "@next/env": "12.2.5",
     "@splidejs/react-splide": "0.7.8",
     "clsx": "1.1.1",
     "colord": "2.8.0",

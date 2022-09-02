@@ -53,6 +53,7 @@ jobs:
           vercel-org-id: ${{ secrets.ORG_ID}}
           vercel-project-id: ${{ secrets.PROJECT_ID}}
           vercel-project-name: 'my-shop'
+          vercel-args: ${{ github.ref == 'refs/heads/main' && '--prod' || '' }}
     outputs:
       preview-url: ${{ steps.vercel-deployment.outputs.preview-url }}
 

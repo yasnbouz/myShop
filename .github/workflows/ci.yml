@@ -1,12 +1,16 @@
 name: CI
 on:
   push:
+    branches:
+      - 'main'
+  pull_request:
+
 jobs:
   build:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        node-version: [14]
+        node-version: [16]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -19,16 +23,13 @@ jobs:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Install pnpm
+      - name: Installing pnpm
         run: curl -f https://get.pnpm.io/v6.14.js | node - add --global pnpm@6
 
-      - name: install dependencies
+      - name: installing dependencies
         run: pnpm install
 
-      - name: Check types
-        run: pnpm type-check
-
-      - name: Check linting
+      - name: linting...
         run: pnpm lint
 
       - name: Building...
@@ -43,7 +44,7 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v2
-      - name: Vercel Action
+      - name: Depolying to Vercel
         uses: amondnet/vercel-action@v20.0.0
         id: vercel-deployment
         with:

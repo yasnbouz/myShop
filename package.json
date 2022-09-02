@@ -13,7 +13,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "postbuild": "next-sitemap --config next-sitemap.config.js",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
@@ -25,12 +25,14 @@
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
-      "pnpm lint -- --fix",
+      "pnpm lint --fix",
       "pnpm format"
     ]
   },
   "dependencies": {
     "@headlessui/react": "1.4.1",
+    "@next/env": "12.2.5",
+    "@splidejs/react-splide": "0.7.8",
     "clsx": "1.1.1",
     "colord": "2.8.0",
     "dotenv": "10.0.0",
@@ -42,7 +44,6 @@
     "react-icons": "4.2.0",
     "react-query": "3.26.0",
     "react-use-cart": "1.11.2",
-    "swiper": "7.0.8",
     "the-new-css-reset": "1.2.0"
   },
   "devDependencies": {
@@ -72,7 +73,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "husky": "7.0.2",
     "lint-staged": "11.1.2",
-    "next-sitemap": "1.6.179",
+    "next-sitemap": "3.1.21",
     "prettier": "2.4.0",
     "typescript": "4.4.3",
     "windicss-webpack-plugin": "1.4.8"

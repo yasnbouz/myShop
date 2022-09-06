@@ -21,3 +21,6 @@ input[type='radio'] {
 :focus:not(:focus-visible) {
   outline: 0;
 }
+.splide__pagination .splide__pagination__page.is-active {
+  background-color: #272727;
+}

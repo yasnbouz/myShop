@@ -1,6 +1,6 @@
 import { Product, ProductEdge, useGetProductQuery } from '@/services/shopify/generated/types';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 
 import '@splidejs/react-splide/css';
@@ -21,9 +21,9 @@ function ProductDetail() {
           <div className="flex flex-col space-y-4 items-center lg:(flex-row space-y-0 items-start space-x-8) xl:(space-x-20)">
             <div className="w-full relative h-510px lg:(w-1/2)">
               <Splide options={{ height: `510px` }} className="h-full rounded-3xl overflow-hidden" aria-label={`${data?.productByHandle?.title} images`}>
-                {product?.images.edges.map((img) => (
+                {product?.images.edges.map((img, index) => (
                   <SplideSlide key={img.node.originalSrc}>
-                    <Image src={`${img.node.originalSrc}`} alt={`${img.node.altText}`} layout="fill" objectFit="cover" />
+                    <Image src={`${img.node.originalSrc}`} alt={`${img.node.altText}`} className="object-cover" fill priority={index === 0} />
                   </SplideSlide>
                 ))}
               </Splide>

@@ -6,7 +6,8 @@ module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['cdn.shopify.com'],
+    remotePatterns: [{ protocol: 'https', hostname: 'cdn.shopify.com', pathname: '/s/files/**' }],
+    formats: ['image/avif', 'image/webp'],
   },
   i18n: {
     locales: ['en'],

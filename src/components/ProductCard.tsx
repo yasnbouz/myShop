@@ -6,7 +6,7 @@ import { formatCurrencyValue } from '@/utils/helpers';
 interface Props {
   product: Product;
 }
-const ProductCard = ({ product }: Props) => {
+function ProductCard({ product }: Props) {
   const { title, handle } = product;
   const { altText, originalSrc } = product.images.edges[0].node;
   const { amount } = product.priceRange.minVariantPrice;
@@ -21,6 +21,6 @@ const ProductCard = ({ product }: Props) => {
       <p className="text-gray-700 text-md font-medium mt-1 ml-4">{formatCurrencyValue.format(amount)}</p>
     </article>
   );
-};
+}
 
 export default ProductCard;

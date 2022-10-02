@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { AiOutlineShopping } from 'react-icons/ai';
 import Cart from '@/components/Cart';
 
-const Header = () => {
+function Header() {
   const { totalItems, cartOpen, setCartOpen } = useShopify();
 
   return (
@@ -29,6 +29,6 @@ const Header = () => {
       <Cart cartOpen={cartOpen} setCartOpen={setCartOpen} />
     </header>
   );
-};
+}
 
 export default Header;

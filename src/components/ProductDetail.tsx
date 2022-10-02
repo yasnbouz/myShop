@@ -9,7 +9,7 @@ import { defaultUrl } from 'next-seo.config';
 import ProductContent from './ProductContent';
 import RecommendedProducts from './RecommendedProducts';
 
-const ProductDetail = () => {
+function ProductDetail() {
   const router = useRouter();
   const variables = { handle: `${router.query.pid}` };
   const { data } = useGetProductQuery(variables);
@@ -43,5 +43,5 @@ const ProductDetail = () => {
       />
     </>
   );
-};
+}
 export default ProductDetail;

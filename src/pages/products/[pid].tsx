@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
-import { dehydrate, QueryClient } from 'react-query';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import ProductDetail from '@/components/ProductDetail';
 import { getProduct, getProductsSlugs } from '@/services/shopify/api';
 import { useGetProductQuery } from '@/services/shopify/generated/types';

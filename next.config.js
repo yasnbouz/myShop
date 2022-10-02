@@ -1,7 +1,10 @@
-const WindiCSS = require('windicss-webpack-plugin').default;
-
+const WindiCSSWebpackPlugin = require('windicss-webpack-plugin');
+/**
+ * @type {import('next').NextConfig}
+ */
 module.exports = {
   reactStrictMode: true,
+  swcMinify: true,
   images: {
     domains: ['cdn.shopify.com'],
   },
@@ -10,7 +13,7 @@ module.exports = {
     defaultLocale: 'en',
   },
   webpack(config) {
-    config.plugins.push(new WindiCSS());
+    config.plugins.push(new WindiCSSWebpackPlugin());
     return config;
   },
 };

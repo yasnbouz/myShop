@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { QueryClient, dehydrate } from 'react-query';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
 import { useGetProductsInCollectionQuery } from '@/services/shopify/generated/types';
 import ProductList from '@/components/ProductList';
 import { ReactElement } from 'react';

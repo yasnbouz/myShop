@@ -15,7 +15,7 @@ type CartProps = {
 export default function Example({ cartOpen, setCartOpen }: CartProps) {
   const { items, removeItem, cartTotal, updateItemQuantity, checkout, isEmpty } = useShopify();
   return (
-    <Transition.Root show={cartOpen} as={Fragment}>
+    <Transition show={cartOpen} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 overflow-hidden z-5" onClose={setCartOpen}>
         <div className="absolute inset-0 overflow-hidden">
           <Transition.Child
@@ -141,6 +141,6 @@ export default function Example({ cartOpen, setCartOpen }: CartProps) {
           </div>
         </div>
       </Dialog>
-    </Transition.Root>
+    </Transition>
   );
 }

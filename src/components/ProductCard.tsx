@@ -1,5 +1,5 @@
 import { Product } from '@/services/shopify/generated/types';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import Link from 'next/link';
 import { formatCurrencyValue } from '@/utils/helpers';
 
@@ -14,7 +14,7 @@ function ProductCard({ product }: Props) {
     <article className="group">
       <Link href={`/products/${handle}`}>
         <a className="block bg-gray-200 rounded-3xl cursor-pointer overflow-hidden h-74 relative duration-500 group-hover:opacity-75">
-          <Image src={originalSrc} layout="fill" alt={`${altText}`} objectFit="cover" />
+          <Image src={originalSrc} alt={`${altText}`} fill className="object-cover" />
         </a>
       </Link>
       <h3 className="text-gray-900 text-lg font-bold mt-2 ml-4">{title}</h3>

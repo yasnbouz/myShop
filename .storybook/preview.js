@@ -1,0 +1,28 @@
+import { Providers } from '../src/providers/default';
+import { RouterContext } from 'next/dist/shared/lib/router-context'; // next 12
+import * as NextImage from 'next/future/image';
+import 'windi.css';
+import 'the-new-css-reset/css/reset.css';
+import '../src/styles/global.css';
+
+const OriginalNextImage = NextImage.default;
+
+Object.defineProperty(NextImage, 'default', {
+  configurable: true,
+  value: (props) => <OriginalNextImage {...props} unoptimized />,
+});
+export const parameters = {
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+  layout: 'fullscreen',
+  nextRouter: {
+    Provider: RouterContext.Provider,
+    isFallback: 'blocking',
+  },
+};
+export const decorators = [(story) => <Providers>{story()}</Providers>];

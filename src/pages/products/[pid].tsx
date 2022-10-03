@@ -1,19 +1,10 @@
-import Layout from '@/components/Layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
-import { ReactElement } from 'react';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import ProductDetail from '@/components/ProductDetail';
 import { getProduct, getProductsSlugs } from '@/services/shopify/api';
 import { useGetProductQuery } from '@/services/shopify/generated/types';
 
 export default function ProductPage() {
-  const router = useRouter();
-
-  if (router.isFallback) {
-    return <p>loading ...</p>;
-  }
-
   return (
     <div>
       <ProductDetail />
@@ -41,7 +32,4 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     },
     revalidate: 10,
   };
-};
-ProductPage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
 };

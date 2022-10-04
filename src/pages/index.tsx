@@ -4,6 +4,7 @@ import { useGetProductsInCollectionQuery } from '@/services/shopify/generated/ty
 import ProductList from '@/components/ProductList';
 import Hero from '@/components/Hero';
 import { getProductsInCollection } from '@/services/shopify/api';
+import { Router, useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
@@ -19,6 +20,8 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function Home() {
+  const router = useRouter();
+  console.log(router);
   return (
     <div>
       <Hero />

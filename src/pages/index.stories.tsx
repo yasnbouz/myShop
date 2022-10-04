@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 import Home from './index';
 
 export default {
@@ -8,9 +7,14 @@ export default {
 } as ComponentMeta<typeof Home>;
 
 // eslint-disable-next-line react/function-component-definition
-const HomePage: ComponentStory<typeof Home> = () => <Home />;
+export const HomePage: ComponentStory<typeof Home> = () => <Home />;
 
 HomePage.story = {
-  parameters: {},
+  parameters: {
+    nextRouter: {
+      path: `/`,
+      asPath: `/`,
+      query: { slug: `ezfezfze` },
+    },
+  },
 };
-export const Default = HomePage.bind({});

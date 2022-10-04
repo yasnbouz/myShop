@@ -8,7 +8,7 @@ export default {
 } as ComponentMeta<typeof Product>;
 
 // eslint-disable-next-line react/function-component-definition
-const ProductPage: ComponentStory<typeof Product> = () => <Product />;
+export const ProductPage: ComponentStory<typeof Product> = () => <Product />;
 ProductPage.story = {
   parameters: {
     nextRouter: {
@@ -20,4 +20,3 @@ ProductPage.story = {
     },
   },
 };
-export const Default = ProductPage.bind({});

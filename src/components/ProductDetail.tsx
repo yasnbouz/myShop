@@ -27,7 +27,15 @@ function ProductDetail() {
               <Splide options={{ height: `510px` }} className="h-full rounded-3xl overflow-hidden" aria-label={`${data?.productByHandle?.title} images`}>
                 {product?.images.edges.map((img, index) => (
                   <SplideSlide key={img.node.originalSrc}>
-                    <Image src={`${img.node.originalSrc}`} alt={`${img.node.altText}`} className="object-cover" fill priority={index === 0} />
+                    <Image
+                      src={`${img.node.originalSrc}`}
+                      alt={`${img.node.altText}`}
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw,
+                             50vw"
+                      fill
+                      priority={index === 0}
+                    />
                   </SplideSlide>
                 ))}
               </Splide>

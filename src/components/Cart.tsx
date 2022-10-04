@@ -4,7 +4,7 @@ import { MdClose } from 'react-icons/md';
 import { IoTrashOutline } from 'react-icons/io5';
 import Link from 'next/link';
 import useShopify from '@/hooks/useShopify';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import { formatCurrencyValue } from '@/utils/helpers';
 import { colord } from 'colord';
 
@@ -63,7 +63,7 @@ export default function Example({ cartOpen, setCartOpen }: CartProps) {
                               <li key={product.id} className="py-6 flex">
                                 <Link href={`/products/${product.handle}`}>
                                   <a className="relative cursor-pointer flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
-                                    <Image src={product.image.originalSrc} alt={product.image.altText} layout="fill" objectFit="cover" />
+                                    <Image src={product.image.originalSrc} alt={product.image.altText} width={94} height={94} className="object-cover" />
                                   </a>
                                 </Link>
                                 <div className="ml-4 flex-1 flex flex-col">

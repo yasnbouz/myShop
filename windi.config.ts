@@ -2,9 +2,10 @@ import { defineConfig } from 'windicss/helpers';
 
 export default defineConfig({
   darkMode: `class`,
+  preflight: true,
   theme: {
     extend: {
-      backgroundImage: (theme) => ({
+      backgroundImage: () => ({
         hero: `linear-gradient(225deg, #21D4FD 0%, #B721FF 100%)`,
       }),
     },
@@ -13,5 +14,5 @@ export default defineConfig({
     include: [`src/**/*.{ts,js,tsx,css}`],
     exclude: [`node_modules`, `.git`, `.next`],
   },
-  plugins: [],
+  plugins: [require(`windicss/plugin/typography`)],
 });

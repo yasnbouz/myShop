@@ -1,13 +1,13 @@
 function Hero() {
   return (
     <div className="relative mx-auto">
-      <section className="px-4 flex flex-col min-h-[800px] items-center justify-center backdrop-filter backdrop-blur-96px backdrop-brightness-105 backdrop-contrast-105">
+      <section className="px-4 flex flex-col min-h-[500px] md:min-h-[800px] items-center justify-center backdrop-filter backdrop-blur-96px backdrop-brightness-105 backdrop-contrast-105">
         <h1 className="font-extrabold text-black text-center bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent text-4xl sm:text-6xl md:text-7xl">
           Jamstack E-commerce
         </h1>
         <p className="font-bold text-dark-400 text-center text-xl mt-4 sm:text-3xl md:text-4xl">Shopify Storefront with Nextjs</p>
       </section>
-      <div className="h-400px top-0 left-0 w-400px absolute -z-1" aria-hidden>
+      <div className="top-0 left-0 w-250px absolute -z-1 sm:(w-400px)" aria-hidden>
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
           <path
             fill="#FF0066"
@@ -16,7 +16,7 @@ function Hero() {
           />
         </svg>
       </div>
-      <div className="h-400px w-400px absolute bottom-0 right-0 -z-1" aria-hidden>
+      <div className="w-250px absolute bottom-0 right-0 -z-1 sm:(w-400px)" aria-hidden>
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
           <path
             fill="#8A3FFC"

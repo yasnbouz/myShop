@@ -22,7 +22,7 @@ function ProductDetail() {
     <>
       <div className="bg-[white]">
         <div className="container mx-auto px-4 py-16">
-          <div className="flex flex-col space-y-4 items-center lg:(flex-row space-y-0 items-start space-x-8) xl:(space-x-20)">
+          <div className="flex flex-col space-y-4 md:items-center lg:(flex-row space-y-0 items-start space-x-8) xl:(space-x-20)">
             <div className="w-full relative h-510px lg:(w-1/2)">
               <Splide options={{ height: `510px` }} className="h-full rounded-3xl overflow-hidden" aria-label={`${data?.productByHandle?.title} images`}>
                 {product?.images.edges.map((img, index) => (

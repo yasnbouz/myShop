@@ -3,9 +3,8 @@ import { RouterContext } from 'next/dist/shared/lib/router-context'; // next 12
 import { decorators as RouterDecorators } from 'storybook-addon-next-router/dist/preset/addDecorator';
 
 import * as NextImage from 'next/future/image';
-import 'windi.css';
-import 'the-new-css-reset/css/reset.css';
 import '../src/styles/global.css';
+import 'windi.css';
 
 const OriginalNextImage = NextImage.default;
 

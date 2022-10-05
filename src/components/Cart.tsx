@@ -43,7 +43,7 @@ export default function Example({ cartOpen, setCartOpen }: CartProps) {
               <div className="h-full flex flex-col bg-white shadow-xl overflow-y-auto">
                 <div className="flex-1 py-6 overflow-y-auto px-4 sm:px-6">
                   <div className="flex items-start justify-between">
-                    <Dialog.Title className="text-lg font-medium text-gray-900">Shopping cart</Dialog.Title>
+                    <Dialog.Title className="text-lg font-semibold text-gray-900">Shopping cart</Dialog.Title>
                     <div className="ml-3 h-7 flex items-center">
                       <button type="button" className="-m-2 p-2 text-gray-400 hover:text-gray-500" onClick={() => setCartOpen(false)}>
                         <span className="sr-only">Close panel</span>
@@ -111,15 +111,15 @@ export default function Example({ cartOpen, setCartOpen }: CartProps) {
                 </div>
 
                 <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-                  <div className="flex justify-between text-base font-medium text-gray-900">
+                  <div className="flex justify-between text-base font-semibold text-gray-900">
                     <p>Subtotal</p>
                     <p>{formatCurrencyValue.format(cartTotal)}</p>
                   </div>
-                  <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                  <p className="mt-0.5 text-sm font-medium text-gray-500">Shipping and taxes calculated at checkout.</p>
                   <div className="mt-6">
                     <button
                       type="button"
-                      className="w-full px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-center text-white bg-indigo-600 hover:bg-indigo-700"
+                      className="w-full px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-bold text-center text-white bg-indigo-600 hover:bg-indigo-700"
                       onClick={checkout}
                     >
                       Checkout
@@ -128,7 +128,7 @@ export default function Example({ cartOpen, setCartOpen }: CartProps) {
                   <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
                     <p>
                       or{` `}
-                      <button type="button" className="text-indigo-600 font-medium hover:text-indigo-500" onClick={() => setCartOpen(false)}>
+                      <button type="button" className="text-indigo-600 font-semibold hover:text-indigo-500" onClick={() => setCartOpen(false)}>
                         Continue Shopping<span aria-hidden="true"> &rarr;</span>
                       </button>
                     </p>

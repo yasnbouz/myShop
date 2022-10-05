@@ -6,10 +6,9 @@ import type { DehydratedState } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { Providers } from '@/providers/default';
 
-import 'the-new-css-reset/css/reset.css';
 // eslint-disable-next-line import/no-unresolved
-import 'windi.css';
 import '../styles/global.css';
+import 'windi.css';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;

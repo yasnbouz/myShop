@@ -18,7 +18,7 @@ function ProductCard({ product }: Props) {
         </a>
       </Link>
       <h3 className="text-gray-900 text-lg font-bold mt-2 ml-4">{title}</h3>
-      <p className="text-gray-700 text-md font-medium mt-1 ml-4">{formatCurrencyValue.format(amount)}</p>
+      <strong className="text-gray-700 text-md font-semibold mt-1 ml-4">{formatCurrencyValue.format(amount)}</strong>
     </article>
   );
 }

@@ -38,6 +38,7 @@
       }
     ],
     "quotes": "off",
+    "global-require": 0,
     "jsx-a11y/anchor-is-valid": [
       "error",
       {

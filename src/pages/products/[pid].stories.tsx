@@ -13,9 +13,9 @@ ProductPage.story = {
   parameters: {
     nextRouter: {
       path: `/products/[pid]`,
-      asPath: `/products/zion-1`,
+      asPath: `/products/jordan-delta-2`,
       query: {
-        pid: `zion-1`,
+        pid: `jordan-delta-2`,
       },
     },
   },

@@ -1,7 +1,7 @@
 import { Product, useGetProductsInCollectionQuery } from '@/services/shopify/generated/types';
 import ProductCard from './ProductCard';
 
-const ProductList = () => {
+function ProductList() {
   const { data } = useGetProductsInCollectionQuery({
     handle: `frontpage`,
   });
@@ -19,6 +19,6 @@ const ProductList = () => {
       </section>
     </div>
   );
-};
+}
 
 export default ProductList;

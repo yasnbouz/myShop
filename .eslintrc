@@ -38,6 +38,7 @@
       }
     ],
     "quotes": "off",
+    "global-require": 0,
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
@@ -66,7 +67,8 @@
           {
             "avoidEscape": true
           }
-        ]
+        ],
+        "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.stories.tsx", "windi.config.ts"] }]
       }
     }
   ],

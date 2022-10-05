@@ -49,16 +49,16 @@ export default function ProductContent({ product }: ProductContentProps) {
     }, allProductVariants);
   };
   return (
-    <div>
-      <h1 className="text-4xl mb-4 font-medium text-gray-900">{product.title}</h1>
-      <p className="text-lg mb-4 font-normal text-gray-900 max-w-60ch">{product.description}</p>
-      <p className="mb-8 text-2xl font-medium  text-gray-900">{formatCurrencyValue.format(product.priceRange.minVariantPrice.amount)}</p>
+    <div className="prose">
+      <h1>{product.title}</h1>
+      <p>{product.description}</p>
+      <strong className="text-lg">{formatCurrencyValue.format(product.priceRange.minVariantPrice.amount)}</strong>
       <ProductOptions product={product} selectedOptions={selectedOptions} setSelectedOptions={handleOptionChange} />
       <button
         suppressHydrationWarning
         onClick={addToCart}
         type="button"
-        className="bg-black text-gray-200 min-w-360px text-center uppercase tracking-wide font-medium px-8 py-4 mt-8 rounded-lg hover:(bg-dark-900) active:(bg-dark-800)"
+        className="bg-black text-gray-200 text-center uppercase tracking-wide font-bold px-8 py-4 mt-8 rounded-lg sm:min-w-300px hover:(bg-dark-900) active:(bg-dark-800)"
       >
         {isInCart ? `add again` : `Add To Cart`}
       </button>

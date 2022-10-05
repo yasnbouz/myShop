@@ -1,23 +1,11 @@
 import { useCheckoutCreateMutation } from '@/services/shopify/generated/types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useCart } from 'react-use-cart';
 
 const useShopify = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const mutation = useCheckoutCreateMutation();
   const cart = useCart();
-
-  useEffect(() => {
-    const id = setTimeout(() => {
-      if (cart.isEmpty && cartOpen) {
-        setCartOpen(false);
-      }
-    }, 2000);
-
-    return () => {
-      clearTimeout(id);
-    };
-  }, [cartOpen, cart.isEmpty]);
 
   const checkout = async () => {
     const { items } = cart;

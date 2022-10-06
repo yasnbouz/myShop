@@ -5,7 +5,7 @@ const WindiCSS = require('windicss-webpack-plugin');
 module.exports = {
   reactStrictMode: true,
   swcMinify: true,
-  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts', 'stories.tsx'],
+  pageExtensions: ['page.tsx'],
   images: {
     remotePatterns: [{ protocol: 'https', hostname: 'cdn.shopify.com', pathname: '/s/files/**' }],
     formats: ['image/avif', 'image/webp'],

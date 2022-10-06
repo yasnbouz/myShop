@@ -68,7 +68,7 @@
             "avoidEscape": true
           }
         ],
-        "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.stories.tsx", "windi.config.ts"] }]
+        "import/no-extraneous-dependencies": 0
       }
     }
   ],

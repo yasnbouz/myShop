@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Product from './[pid]';
+import Product from './[pid].page';
 
 export default {
   title: `Pages/Product`,

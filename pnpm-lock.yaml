@@ -11,6 +11,7 @@ specifiers:
   '@graphql-codegen/typescript-react-query': 4.0.1
   '@headlessui/react': 1.7.3
   '@next/env': 12.3.1
+  '@playwright/test': 1.26.1
   '@splidejs/react-splide': 0.7.12
   '@storybook/addon-actions': ^6.5.12
   '@storybook/addon-essentials': ^6.5.12
@@ -89,6 +90,7 @@ devDependencies:
   '@graphql-codegen/typescript': 2.7.3_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 2.5.3_graphql@16.6.0
   '@graphql-codegen/typescript-react-query': 4.0.1_graphql@16.6.0
+  '@playwright/test': 1.26.1
   '@storybook/addon-actions': 6.5.12_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-essentials': 6.5.12_sxhfgu3bguzhlcoz4qu25ydyem
   '@storybook/addon-interactions': 6.5.12_26equvtduyjy6o3gsvcrrvq4oy
@@ -2730,6 +2732,15 @@ packages:
       picocolors: 1.0.0
       tiny-glob: 0.2.9
       tslib: 2.4.0
+    dev: true
+
+  /@playwright/test/1.26.1:
+    resolution: {integrity: sha512-bNxyZASVt2adSZ9gbD7NCydzcb5JaI0OR9hc7s+nmPeH604gwp0zp17NNpwXY4c8nvuBGQQ9oGDx72LE+cUWvw==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      '@types/node': 18.7.23
+      playwright-core: 1.26.1
     dev: true
 
   /@pmmmwh/react-refresh-webpack-plugin/0.5.7_metx475lqcp4j5c75za4zf7xbi:
@@ -11804,6 +11815,12 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       find-up: 5.0.0
+    dev: true
+
+  /playwright-core/1.26.1:
+    resolution: {integrity: sha512-hzFchhhxnEiPc4qVPs9q2ZR+5eKNifY2hQDHtg1HnTTUuphYCBP8ZRb2si+B1TR7BHirgXaPi48LIye5SgrLAA==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /pnp-webpack-plugin/1.6.4_typescript@4.8.4:

@@ -23,12 +23,13 @@
     "commit": "cz",
     "generate": "graphql-codegen -r dotenv/config -c codegen.yml dotenv_config_path=./.env.local",
     "storybook": "start-storybook -p 6006 --no-open",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "e2e": "pnpm dlx playwright test --project=chromium",
+    "e2e:codegen": "pnpm dlx playwright codegen http://localhost:3000/"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
-      "pnpm lint --fix",
-      "pnpm format"
+      "pnpm lint --fix"
     ]
   },
   "dependencies": {
@@ -58,6 +59,7 @@
     "@graphql-codegen/typescript": "2.7.3",
     "@graphql-codegen/typescript-operations": "2.5.3",
     "@graphql-codegen/typescript-react-query": "4.0.1",
+    "@playwright/test": "1.26.1",
     "@storybook/addon-actions": "^6.5.12",
     "@storybook/addon-essentials": "^6.5.12",
     "@storybook/addon-interactions": "^6.5.12",

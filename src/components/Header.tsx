@@ -15,7 +15,7 @@ function Header() {
               My<span className="text-indigo-600">Shop</span>
             </a>
           </Link>
-          <button type="button" className="cursor-pointer relative" onClick={() => setCartOpen(true)}>
+          <button type="button" data-testid="cart" className="cursor-pointer relative" onClick={() => setCartOpen(true)}>
             <AiOutlineShopping size="32px" />
             <span
               suppressHydrationWarning

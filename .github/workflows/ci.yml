@@ -6,44 +6,60 @@ on:
   pull_request:
 
 jobs:
-  build:
-    runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node-version: [16]
+  Build:
+    name: Build Nextjs App
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Nodejs
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Cache .pnpm-store
-        uses: actions/cache@v2
+          node-version: 16
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
         with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          version: 7.11.0
+          run_install: false
 
-      - name: Installing pnpm
-        run: curl -f https://get.pnpm.io/v6.14.js | node - add --global pnpm@6
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
 
-      - name: installing dependencies
-        run: pnpm install
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        id: cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
-      - name: linting...
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm i
+
+      - name: Lint
         run: pnpm lint
 
-      - name: Building...
+      - name: Build
         run: pnpm build
         env:
           NEXT_PUBLIC_SHOPIFY_STORE_ID: ${{secrets.SHOPIFY_STORE_ID}}
           NEXT_PUBLIC_SHOPIFY_API_TOKEN: ${{secrets.SHOPIFY_API_TOKEN}}
           NEXT_PUBLIC_SITE_URL: ${{secrets.SITE_URL}}
 
-  deploy:
+  Deploy:
+    name: Deploy To Vercel
     runs-on: ubuntu-latest
-    needs: build
+    needs: Build
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
       - name: Depolying to Vercel
         uses: amondnet/vercel-action@v20.0.0
         id: vercel-deployment
@@ -57,16 +73,31 @@ jobs:
     outputs:
       preview-url: ${{ steps.vercel-deployment.outputs.preview-url }}
 
-  lighthouse:
+  E2E_Tests:
+    name: Playwright Testing
+    timeout-minutes: 60
     runs-on: ubuntu-latest
-    needs: deploy
+    if: github.event.deployment_status.state == 'success'
     steps:
-      - uses: actions/checkout@v2
+      - name: Install Playwright
+        run: pnpm dlx playwright install --with-deps
+      - name: Run Playwright tests
+        run: pnpm dlx playwright test
+        env:
+          CI: true
+          PLAYWRIGHT_BASE_URL: ${{ github.event.deployment_status.target_url }}
+
+  Lighthouse:
+    name: Measure Performance with lighthouse
+    runs-on: ubuntu-latest
+    needs: Deploy
+    steps:
+      - uses: actions/checkout@v3
       - name: Run Lighthouse on urls and validate with lighthouserc
         uses: treosh/lighthouse-ci-action@v7
         with:
           urls: |
-            ${{ needs.deploy.outputs.preview-url }}
+            ${{ needs.Deploy.outputs.preview-url }}
           configPath: './lighthouserc.json'
           serverBaseUrl: ${{ secrets.LHCI_SERVER_URL }}
           serverToken: ${{ secrets.LHCI_SERVER_TOKEN }}

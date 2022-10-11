@@ -38,8 +38,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+      - if: steps.cache.outputs.cache-hit != 'true'
+        name: Install dependencies
         run: pnpm i
 
       - name: Lint
@@ -75,6 +75,7 @@ jobs:
   E2E_Tests:
     name: Playwright Testing
     timeout-minutes: 60
+    needs: Deploy
     runs-on: ubuntu-latest
     if: github.event.deployment_status.state == 'success'
     steps:

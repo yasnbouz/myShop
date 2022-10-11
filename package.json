@@ -1,9 +1,9 @@
 {
   "name": "typescript-nextjs-starter",
-  "description": "A TypeScript starter for Next.js that includes all you need to build amazing projects",
+  "description": "A Shopify E-commerce starter for Next.js that includes all you need to build amazing projects",
   "version": "1.0.0",
   "private": true,
-  "author": "João Pedro Schmitz <hey@joaopedro.dev> (@jpedroschmitz)",
+  "author": "@yasnbouz",
   "license": "MIT",
   "keywords": [
     "nextjs",
@@ -12,7 +12,7 @@
   ],
   "packageManager": "pnpm@7.11.0",
   "engines": {
-    "node": "16.17.0"
+    "node": "16.x"
   },
   "scripts": {
     "dev": "next",

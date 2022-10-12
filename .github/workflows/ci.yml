@@ -5,6 +5,9 @@ on:
       - 'main'
   pull_request:
 
+env:
+  PNPM_VERSION: 7.11.0
+
 jobs:
   Build:
     name: Build Nextjs App
@@ -19,9 +22,9 @@ jobs:
           node-version: 16.x
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.3
         with:
-          version: 7.11.0
+          version: ${{ env.PNPM_VERSION }}
           run_install: false
 
       - name: Get pnpm store directory
@@ -51,6 +54,12 @@ jobs:
           NEXT_PUBLIC_SHOPIFY_API_TOKEN: ${{secrets.SHOPIFY_API_TOKEN}}
           NEXT_PUBLIC_SITE_URL: ${{secrets.SITE_URL}}
 
+      - uses: actions/cache@v3
+        id: cache-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}-${{ github.run_number }}
+
   Deploy:
     name: Deploy To Vercel
     runs-on: ubuntu-latest
@@ -77,18 +86,35 @@ jobs:
     timeout-minutes: 60
     needs: Deploy
     runs-on: ubuntu-latest
-    if: github.event.deployment_status.state == 'success'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.3
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
       - name: Install Playwright
         run: pnpm dlx playwright install --with-deps
+
+      - uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}-${{ github.run_number }}
+
       - name: Run Playwright tests
         run: pnpm dlx playwright test
         env:
           CI: true
-          PLAYWRIGHT_BASE_URL: ${{ github.event.deployment_status.target_url }}
+          PLAYWRIGHT_BASE_URL: ${{ needs.Deploy.outputs.preview-url }}
 
   Lighthouse:
     name: Measure Performance with lighthouse

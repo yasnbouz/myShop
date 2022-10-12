@@ -116,6 +116,13 @@ jobs:
           CI: true
           PLAYWRIGHT_BASE_URL: ${{ needs.Deploy.outputs.preview-url }}
 
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: playwright-report
+          path: playwright-report
+
   Lighthouse:
     name: Measure Performance with lighthouse
     runs-on: ubuntu-latest

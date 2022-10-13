@@ -10,16 +10,16 @@
     "starter",
     "typescript"
   ],
-  "packageManager": "pnpm@7.11.0",
   "engines": {
-    "node": "16.x"
+    "node": ">=16.x",
+    "pnpm": ">=7.x"
   },
   "scripts": {
     "dev": "next",
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "type-check": "tsc",
+    "type-check": "tsc --incremental false",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
     "preinstall": "npx only-allow pnpm",

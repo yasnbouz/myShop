@@ -6,7 +6,8 @@ on:
   pull_request:
 
 env:
-  PNPM_VERSION: 7.11.0
+  NODE_VERSION: '>=7.x'
+  PNPM_VERSION: '>=16.x'
 
 jobs:
   Build:
@@ -19,7 +20,7 @@ jobs:
       - name: Install Nodejs
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: ${{ NODE_VERSION }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.3
@@ -93,7 +94,7 @@ jobs:
       - name: Install Nodejs
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: ${{ NODE_VERSION }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.3

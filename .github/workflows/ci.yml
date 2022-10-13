@@ -10,7 +10,7 @@ env:
   PNPM_VERSION: '>=7.x'
 
 jobs:
-  Build:
+  build:
     name: Build Nextjs App
     runs-on: ubuntu-latest
     steps:
@@ -31,7 +31,7 @@ jobs:
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
 
       - uses: actions/cache@v3
         name: Setup pnpm cache
@@ -51,9 +51,9 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          NEXT_PUBLIC_SHOPIFY_STORE_ID: ${{secrets.SHOPIFY_STORE_ID}}
-          NEXT_PUBLIC_SHOPIFY_API_TOKEN: ${{secrets.SHOPIFY_API_TOKEN}}
-          NEXT_PUBLIC_SITE_URL: ${{secrets.SITE_URL}}
+          NEXT_PUBLIC_SHOPIFY_STORE_ID: ${{ secrets.SHOPIFY_STORE_ID }}
+          NEXT_PUBLIC_SHOPIFY_API_TOKEN: ${{ secrets.SHOPIFY_API_TOKEN }}
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL }}
 
       - uses: actions/cache@v3
         id: cache-build
@@ -64,7 +64,7 @@ jobs:
   Deploy:
     name: Deploy To Vercel
     runs-on: ubuntu-latest
-    needs: Build
+    needs: build
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -82,10 +82,10 @@ jobs:
     outputs:
       preview-url: ${{ steps.vercel-deployment.outputs.preview-url }}
 
-  E2E_Tests:
+  e2e_test:
     name: Playwright Testing
     timeout-minutes: 60
-    needs: Deploy
+    needs: deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -123,7 +123,7 @@ jobs:
         run: pnpm e2e:test
         env:
           CI: true
-          PLAYWRIGHT_BASE_URL: ${{ needs.Deploy.outputs.preview-url }}
+          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.preview-url }}
 
       - name: Upload test results
         if: always()
@@ -132,10 +132,10 @@ jobs:
           name: playwright-report
           path: playwright-report
 
-  Lighthouse:
+  lighthouse:
     name: Measure Performance with lighthouse
     runs-on: ubuntu-latest
-    needs: Deploy
+    needs: deploy
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -144,7 +144,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v7
         with:
           urls: |
-            ${{ needs.Deploy.outputs.preview-url }}
+            ${{ needs.deploy.outputs.preview-url }}
           configPath: './lighthouserc.json'
           serverBaseUrl: ${{ secrets.LHCI_SERVER_URL }}
           serverToken: ${{ secrets.LHCI_SERVER_TOKEN }}

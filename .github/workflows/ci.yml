@@ -6,8 +6,8 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: '>=7.x'
-  PNPM_VERSION: '>=16.x'
+  NODE_VERSION: '>=16.x'
+  PNPM_VERSION: '>=7.x'
 
 jobs:
   Build:
@@ -20,7 +20,7 @@ jobs:
       - name: Install Nodejs
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ NODE_VERSION }}
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.3
@@ -94,7 +94,7 @@ jobs:
       - name: Install Nodejs
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ NODE_VERSION }}
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.3
@@ -108,7 +108,15 @@ jobs:
           path: ./*
           key: ${{ github.sha }}-${{ github.run_number }}
 
+      - name: Cache Browser Binaries
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-cache-1.27.1
+
       - name: Install Playwright
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: pnpm dlx playwright@1.27.1 install --with-deps
 
       - name: Run Playwright tests

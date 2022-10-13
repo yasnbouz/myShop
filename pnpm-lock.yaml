@@ -11,6 +11,7 @@ specifiers:
   '@graphql-codegen/typescript-react-query': 4.0.1
   '@headlessui/react': 1.7.3
   '@next/env': 12.3.1
+  '@playwright/test': 1.27.1
   '@splidejs/react-splide': 0.7.12
   '@storybook/addon-actions': ^6.5.12
   '@storybook/addon-essentials': ^6.5.12
@@ -32,7 +33,7 @@ specifiers:
   colord: 2.9.3
   commitizen: 4.2.5
   cz-conventional-changelog: 3.3.0
-  dotenv: 10.0.0
+  dotenv: 16.0.3
   eslint: 8.24.0
   eslint-config-airbnb: 19.0.4
   eslint-config-next: 12.3.1
@@ -70,7 +71,7 @@ dependencies:
   '@tanstack/react-query-devtools': 4.8.0_nscguit52pwjmvr4nqvhrqfsfq
   clsx: 1.2.1
   colord: 2.9.3
-  dotenv: 10.0.0
+  dotenv: 16.0.3
   next: 12.3.1_6tziyx3dehkoeijunclpkpolha
   next-seo: 5.5.0_azq6kxkn3od7qdylwkyksrwopy
   rambda: 6.9.0
@@ -89,6 +90,7 @@ devDependencies:
   '@graphql-codegen/typescript': 2.7.3_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 2.5.3_graphql@16.6.0
   '@graphql-codegen/typescript-react-query': 4.0.1_graphql@16.6.0
+  '@playwright/test': 1.27.1
   '@storybook/addon-actions': 6.5.12_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-essentials': 6.5.12_sxhfgu3bguzhlcoz4qu25ydyem
   '@storybook/addon-interactions': 6.5.12_26equvtduyjy6o3gsvcrrvq4oy
@@ -2730,6 +2732,15 @@ packages:
       picocolors: 1.0.0
       tiny-glob: 0.2.9
       tslib: 2.4.0
+    dev: true
+
+  /@playwright/test/1.27.1:
+    resolution: {integrity: sha512-mrL2q0an/7tVqniQQF6RBL2saskjljXzqNcCOVMUjRIgE6Y38nCNaP+Dc2FBW06bcpD3tqIws/HT9qiMHbNU0A==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      '@types/node': 18.7.23
+      playwright-core: 1.27.1
     dev: true
 
   /@pmmmwh/react-refresh-webpack-plugin/0.5.7_metx475lqcp4j5c75za4zf7xbi:
@@ -7236,15 +7247,9 @@ packages:
     resolution: {integrity: sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==}
     dev: true
 
-  /dotenv/10.0.0:
-    resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
-    engines: {node: '>=10'}
-    dev: false
-
   /dotenv/16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
-    dev: true
 
   /dotenv/8.6.0:
     resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
@@ -11804,6 +11809,12 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       find-up: 5.0.0
+    dev: true
+
+  /playwright-core/1.27.1:
+    resolution: {integrity: sha512-9EmeXDncC2Pmp/z+teoVYlvmPWUC6ejSSYZUln7YaP89Z6lpAaiaAnqroUt/BoLo8tn7WYShcfaCh+xofZa44Q==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /pnp-webpack-plugin/1.6.4_typescript@4.8.4:

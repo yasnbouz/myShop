@@ -12,10 +12,14 @@ import RecommendedProducts from './RecommendedProducts';
 function ProductDetail() {
   const router = useRouter();
   const variables = { handle: `${router.query.pid}` };
-  const { data, fetchStatus } = useGetProductQuery(variables);
+  const { data, status } = useGetProductQuery(variables);
   const product = data?.productByHandle;
-  if (fetchStatus === `fetching`) {
-    return <p>product fetching...</p>;
+
+  if (status === `loading`) {
+    return <p className="text-center py-8">Fetching product...</p>;
+  }
+  if (!data?.productByHandle) {
+    return <p className="text-center py-8">Product not found</p>;
   }
 
   return (

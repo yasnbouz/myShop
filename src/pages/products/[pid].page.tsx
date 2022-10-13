@@ -24,7 +24,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const queryClient = new QueryClient();
   const variables = { handle: `${ctx.params?.pid}` };
-  await queryClient.prefetchQuery(useGetProductQuery.getKey(variables), getProduct(variables));
+  const data = await queryClient.fetchQuery(useGetProductQuery.getKey(variables), getProduct(variables));
+  if (!data.productByHandle) {
+    return {
+      notFound: true,
+    };
+  }
+  queryClient.setQueryData(useGetProductQuery.getKey(variables), data);
   const dehydratedState = dehydrate(queryClient);
   return {
     props: {

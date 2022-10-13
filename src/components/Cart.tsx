@@ -96,7 +96,7 @@ export default function Example({ cartOpen, setCartOpen }: CartProps) {
                                   </div>
 
                                   <div className="flex">
-                                    <button onClick={() => removeItem(product.id)} type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                    <button name="trash" onClick={() => removeItem(product.id)} type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
                                       <IoTrashOutline size={24} className="text-red-600" />
                                     </button>
                                   </div>

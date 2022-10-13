@@ -39,3 +39,8 @@ yarn-error.log*
 
 /public/robots.txt
 /public/*.xml
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+.vercel

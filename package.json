@@ -3,7 +3,9 @@
   "description": "A Shopify E-commerce starter for Next.js that includes all you need to build amazing projects",
   "version": "1.0.0",
   "private": true,
-  "author": "@yasnbouz",
+  "author": {
+    "name": "@yasnbouz"
+  },
   "license": "MIT",
   "keywords": [
     "nextjs",
@@ -22,7 +24,6 @@
     "type-check": "tsc --incremental false",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
-    "preinstall": "npx only-allow pnpm",
     "postinstall": "husky install",
     "commit": "cz",
     "generate": "graphql-codegen -r dotenv/config -c codegen.yml dotenv_config_path=./.env.local",
@@ -41,6 +42,7 @@
     "@headlessui/react": "1.7.3",
     "@next/env": "12.3.1",
     "@splidejs/react-splide": "0.7.12",
+    "@storybook/addon-a11y": "6.5.12",
     "@tanstack/react-query": "4.8.0",
     "@tanstack/react-query-devtools": "4.8.0",
     "clsx": "1.2.1",
@@ -79,6 +81,7 @@
     "@typescript-eslint/eslint-plugin": "5.38.1",
     "@typescript-eslint/parser": "5.38.1",
     "babel-loader": "^8.2.5",
+    "chromatic": "6.10.2",
     "commitizen": "4.2.5",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.24.0",

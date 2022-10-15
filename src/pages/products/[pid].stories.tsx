@@ -5,6 +5,10 @@ import Product from './[pid].page';
 export default {
   title: `Pages/Product`,
   component: Product,
+  parameters: {
+    // Sets a delay for the component's stories
+    chromatic: { delay: 1000 },
+  },
 } as ComponentMeta<typeof Product>;
 
 // eslint-disable-next-line react/function-component-definition

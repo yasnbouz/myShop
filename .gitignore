@@ -44,3 +44,6 @@ yarn-error.log*
 /playwright/.cache/
 
 .vercel
+
+build-storybook.log
+/storybook-static

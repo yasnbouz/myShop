@@ -39,7 +39,12 @@ test.describe(`Product Page`, () => {
       await cartButton.click();
       // check product title
       const productTitle = await page.locator(`h1`).first().textContent();
-      await expect(await page.getByRole(`dialog`).getByText(productTitle!).textContent()).toBeTruthy();
+      await expect(
+        await page
+          .getByRole(`dialog`)
+          .getByText(productTitle as string)
+          .textContent(),
+      ).toBeTruthy();
     }
   });
   test(`when incrementing the quantity of the product`, async () => {

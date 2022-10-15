@@ -4,6 +4,10 @@ import Home from './index.page';
 export default {
   title: `Pages/Home`,
   component: Home,
+  parameters: {
+    // Sets a delay for the component's stories
+    chromatic: { delay: 1000 },
+  },
 } as ComponentMeta<typeof Home>;
 
 // eslint-disable-next-line react/function-component-definition

@@ -7,7 +7,7 @@ export default {
   component: Product,
   parameters: {
     // Sets a delay for the component's stories
-    chromatic: { delay: 1000 },
+    chromatic: { delay: 5000 },
   },
 } as ComponentMeta<typeof Product>;
 

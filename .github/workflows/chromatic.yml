@@ -42,20 +42,15 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run:
-          pnpm i
+        run: pnpm i
 
-          # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
-        uses:
-          chromaui/action@v1
-          # Chromatic GitHub Action options
+        uses: chromaui/action@v1
         with:
-          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN  }}
           exitZeroOnChanges: true
           autoAcceptChanges: true
           exitOnceUploaded: true
         env:
-          NEXT_PUBLIC_SHOPIFY_STORE_ID: nextjs-windicss
+          NEXT_PUBLIC_SHOPIFY_STORE_ID: ${{ secrets.SHOPIFY_STORE_ID }}
           NEXT_PUBLIC_SHOPIFY_API_TOKEN: ${{ secrets.SHOPIFY_API_TOKEN }}

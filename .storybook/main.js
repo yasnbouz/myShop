@@ -10,6 +10,11 @@ module.exports = {
   core: {
     builder: '@storybook/builder-webpack5',
   },
+  env: (config) => ({
+    ...config,
+    NEXT_PUBLIC_SHOPIFY_STORE_ID: process.env.NEXT_PUBLIC_SHOPIFY_STORE_ID,
+    NEXT_PUBLIC_SHOPIFY_API_TOKEN: process.env.NEXT_PUBLIC_SHOPIFY_API_TOKEN,
+  }),
   webpackFinal: async (config) => {
     config.plugins.push(
       new WindiCSS({

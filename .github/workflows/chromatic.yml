@@ -56,3 +56,5 @@ jobs:
           exitZeroOnChanges: true
           autoAcceptChanges: true
           exitOnceUploaded: true
+        env:
+          NEXT_PUBLIC_SHOPIFY_STORE_ID: ${{ secrets.SHOPIFY_STORE_ID }}

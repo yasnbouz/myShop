@@ -51,6 +51,7 @@ jobs:
           exitZeroOnChanges: true
           autoAcceptChanges: true
           exitOnceUploaded: true
+          ignoreLastBuildOnBranch: 'main'
         env:
           NEXT_PUBLIC_SHOPIFY_STORE_ID: ${{ secrets.SHOPIFY_STORE_ID }}
           NEXT_PUBLIC_SHOPIFY_API_TOKEN: ${{ secrets.SHOPIFY_API_TOKEN }}

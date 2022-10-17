@@ -9,7 +9,7 @@ function Header() {
   return (
     <header className="bg-white border-b sticky top-0 z-4 w-full overflow-hidden">
       <div className="container mx-auto px-4 py-8">
-        <nav className="flex flex-row justify-between items-center">
+        <nav aria-label="page-navigation" className="flex flex-row justify-between items-center">
           <Link href="/">
             <a className="text-2xl font-bold cursor-pointer">
               My<span className="text-indigo-600">Shop</span>

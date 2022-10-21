@@ -52,7 +52,7 @@ export default function ProductContent({ product }: ProductContentProps) {
     <div className="prose">
       <h1>{product.title}</h1>
       <p>{product.description}</p>
-      <strong className="text-lg">{formatCurrencyValue.format(product.priceRange.minVariantPrice.amount)}</strong>
+      <strong className="text-lg">{formatCurrencyValue.format(selectedVariant.price)}</strong>
       <ProductOptions product={product} selectedOptions={selectedOptions} setSelectedOptions={handleOptionChange} />
       <button
         suppressHydrationWarning

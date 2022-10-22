@@ -29,6 +29,7 @@ query getProduct($handle: String!) {
         node {
           id
           title
+          availableForSale
           priceV2 {
             amount
           }

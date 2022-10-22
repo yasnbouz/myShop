@@ -1,7 +1,9 @@
-import { Product } from '@/services/shopify/generated/types';
-import { formatCurrencyValue, getProductOptions } from '@/utils/helpers';
+/* eslint-disable no-nested-ternary */
 import { useState } from 'react';
 import * as R from 'rambda';
+import clsx from 'clsx';
+import { Product } from '@/services/shopify/generated/types';
+import { formatCurrencyValue, getProductOptions } from '@/utils/helpers';
 import useShopify from '@/hooks/useShopify';
 import ProductOptions from './ProductOptions';
 
@@ -20,6 +22,7 @@ export default function ProductContent({ product }: ProductContentProps) {
       name: product.title,
       price: variant.node.priceV2.amount,
       image: variant.node.image,
+      availableForSale: variant.node.availableForSale,
       quantity: 1,
       options,
     };
@@ -58,9 +61,13 @@ export default function ProductContent({ product }: ProductContentProps) {
         suppressHydrationWarning
         onClick={addToCart}
         type="button"
-        className="bg-black text-gray-200 text-center uppercase tracking-wide font-bold px-8 py-4 mt-8 rounded-lg sm:min-w-300px hover:(bg-dark-900) active:(bg-dark-800)"
+        disabled={!selectedVariant.availableForSale}
+        className={clsx(
+          `bg-black text-gray-200 text-center uppercase tracking-wide font-bold px-8 py-4 mt-8 rounded-lg sm:min-w-300px hover:(bg-dark-900) active:(bg-dark-800)`,
+          !selectedVariant.availableForSale && `cursor-not-allowed disabled:(opacity-50)`,
+        )}
       >
-        {isInCart ? `add again` : `Add To Cart`}
+        {!selectedVariant.availableForSale ? `sold out!` : isInCart ? `add again` : `Add To Cart`}
       </button>
     </div>
   );

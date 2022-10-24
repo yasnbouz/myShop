@@ -13,7 +13,7 @@ function ProductCard({ product }: Props) {
   return (
     <article className="group">
       <Link href={`/products/${handle}`}>
-        <a className="block bg-[#f6f6f6] rounded-3xl cursor-pointer overflow-hidden h-74 relative duration-500 group-hover:opacity-75">
+        <a className="block bg-[#f6f6f6] rounded-3xl cursor-pointer overflow-hidden h-74 relative transition-opacity group-hover:opacity-75">
           <Image src={originalSrc} alt={`${altText}`} width={315} height={296} className="object-cover" />
         </a>
       </Link>

@@ -59,7 +59,6 @@ specifiers:
   react-use-cart: 1.13.0
   sharp: 0.31.1
   storybook-addon-next-router: 4.0.0
-  the-new-css-reset: 1.7.3
   tsconfig-paths-webpack-plugin: 4.0.0
   typescript: 4.8.4
   windicss: 3.5.6
@@ -82,7 +81,6 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
   react-use-cart: 1.13.0_react@18.2.0
-  the-new-css-reset: 1.7.3
 
 devDependencies:
   '@babel/core': 7.19.3
@@ -13829,10 +13827,6 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
-
-  /the-new-css-reset/1.7.3:
-    resolution: {integrity: sha512-AiDZRlaS6ccC6CVHMEg+DQyZwfO0/KUvsz+vwmoOw9MlyNv/CaiOEhV1W3iw8ajQbWF0sXWYYhdKGMlCNyILPA==}
-    dev: false
 
   /throttle-debounce/3.0.1:
     resolution: {integrity: sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg==}

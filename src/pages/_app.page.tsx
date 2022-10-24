@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { Providers } from '@/providers/default';
 
 // eslint-disable-next-line import/no-unresolved
-import '../styles/global.css';
+import '@/styles/global.css';
 import 'windi.css';
 
 type NextPageWithLayout = NextPage & {

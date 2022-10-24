@@ -16,9 +16,11 @@ function Header() {
             </a>
           </Link>
           <button type="button" data-testid="cart" className="cursor-pointer relative" onClick={() => setCartOpen(true)}>
-            <AiOutlineShopping size="32px" />
+            <AiOutlineShopping aria-hidden="true" size="32px" />
             <span
               suppressHydrationWarning
+              role="note"
+              aria-label={`${totalItems} in the cart`}
               className="absolute p-2 top-[-20%] right-[-60%] bg-black text-14px text-white rounded-full h-[24px] w-[24px] flex items-center justify-center overflow-hidden"
             >
               {totalItems}

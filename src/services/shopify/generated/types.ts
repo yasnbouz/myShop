@@ -4,7 +4,7 @@
   -  Instead, you can edit the associated .graphql file to query for additional fields and this file will be updated when you run pnpm graphql-types.
 */
 /* eslint-disable */
-import { useMutation, useQuery, UseMutationOptions, UseQueryOptions } from '@tanstack/react-query';
+import { useMutation, useQuery, type UseMutationOptions, type UseQueryOptions } from '@tanstack/react-query';
 import { fetcher } from '../lib/shopifyClient';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;

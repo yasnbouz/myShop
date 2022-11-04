@@ -14,10 +14,11 @@ const config: CodegenConfig = {
     },
   ],
   documents: [`src/services/**/graphql/**/*.{ts,gql,graphql}`],
+  watch: [`src/services/**/graphql/**/*.{ts,gql,graphql}`],
   generates: {
     'src/services/shopify/generated/types.ts': {
       config: {
-        useTypeImports: false,
+        useTypeImports: true,
         defaultScalarType: `unknown`,
         useImplementingTypes: true,
         scalars: { DateTime: `string`, Decimal: `string`, HTML: `string`, URL: `string`, Color: `string`, UnsignedInt64: `string` },

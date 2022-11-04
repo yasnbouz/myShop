@@ -1,8 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import ProductDetail from '@/components/ProductDetail';
-import { getProduct, getProductsSlugs } from '@/services/shopify/api';
-import { useGetProductQuery } from '@/services/shopify/generated/types';
+import { useGetProductQuery, useGetProductsSlugsQuery } from '@/services/shopify/generated/types';
 
 export default function ProductPage() {
   return (
@@ -13,7 +12,7 @@ export default function ProductPage() {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await getProductsSlugs();
+  const data = await useGetProductsSlugsQuery.fetcher()();
   const slugs = data.products?.edges.slice(0, 2) ?? [];
   const paths = slugs.map((item) => ({ params: { pid: item.node.handle } }));
   return {
@@ -24,7 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const queryClient = new QueryClient();
   const variables = { handle: `${ctx.params?.pid}` };
-  const data = await queryClient.fetchQuery(useGetProductQuery.getKey(variables), getProduct(variables));
+  const data = await queryClient.fetchQuery(useGetProductQuery.getKey(variables), useGetProductQuery.fetcher(variables));
   if (!data.productByHandle) {
     return {
       notFound: true,

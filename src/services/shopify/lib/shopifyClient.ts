@@ -3,13 +3,14 @@ const storeFrontToken = process.env.NEXT_PUBLIC_SHOPIFY_API_TOKEN || ``;
 const url = `https://${storeFrontId}.myshopify.com/api/2021-07/graphql.json`;
 
 export const fetcher =
-  <TData, TVariables>(query: string, variables?: TVariables): (() => Promise<TData>) =>
+  <TData, TVariables>(query: string, variables?: TVariables, options?: RequestInit['headers']): (() => Promise<TData>) =>
   async () => {
     const res = await fetch(url, {
       method: `POST`,
       headers: {
         'Content-Type': `application/json`,
         'X-Shopify-Storefront-Access-Token': storeFrontToken,
+        ...options,
       },
       body: JSON.stringify({
         query,
@@ -20,8 +21,8 @@ export const fetcher =
     const { data, errors } = await res.json();
 
     if (errors) {
-      const { message } = errors[0] || `Error..`;
-      throw new Error(message);
+      const { message } = errors[0] || {};
+      throw new Error(message || `Error…`);
     }
     return data;
   };

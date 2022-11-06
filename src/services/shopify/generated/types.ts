@@ -6722,21 +6722,45 @@ export type GetProductQueryVariables = Exact<{
 }>;
 
 
-export type GetProductQuery = { __typename?: 'QueryRoot', productByHandle?: { __typename?: 'Product', id: string, title: string, description: string, handle: string, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', originalSrc: string, altText?: string | null, thumbnail: string } }> }, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, options: Array<{ __typename?: 'ProductOption', id: string, name: string, values: Array<string> }>, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, availableForSale: boolean, priceV2: { __typename?: 'MoneyV2', amount: string }, image?: { __typename?: 'Image', altText?: string | null, originalSrc: string } | null, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }> }, collections: { __typename?: 'CollectionConnection', edges: Array<{ __typename?: 'CollectionEdge', node: { __typename?: 'Collection', title: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', title: string, handle: string, id: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', originalSrc: string, altText?: string | null } }> } } }> } } }> } } | null };
+export type GetProductQuery = { __typename?: 'QueryRoot', product?: { __typename?: 'Product', description: string, id: string, title: string, handle: string, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', url: string, altText?: string | null } }> }, options: Array<{ __typename?: 'ProductOption', id: string, name: string, values: Array<string> }>, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, availableForSale: boolean, priceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: string, altText?: string | null } | null, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }> }, collections: { __typename?: 'CollectionConnection', edges: Array<{ __typename?: 'CollectionEdge', node: { __typename?: 'Collection', title: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', id: string, title: string, handle: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, featuredImage?: { __typename?: 'Image', url: string, altText?: string | null } | null } }> } } }> } } | null };
+
+export type ImageFieldsFragment = { __typename?: 'Image', url: string, altText?: string | null };
+
+export type ProductFieldsFragment = { __typename?: 'Product', id: string, title: string, handle: string };
+
+export type MoneyV2FieldsFragment = { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode };
 
 export type GetProductsInCollectionQueryVariables = Exact<{
   handle: Scalars['String'];
 }>;
 
 
-export type GetProductsInCollectionQuery = { __typename?: 'QueryRoot', collectionByHandle?: { __typename?: 'Collection', title: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', id: string, title: string, handle: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', altText?: string | null, originalSrc: string } }> } } }> } } | null };
+export type GetProductsInCollectionQuery = { __typename?: 'QueryRoot', collection?: { __typename?: 'Collection', title: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', id: string, title: string, handle: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, featuredImage?: { __typename?: 'Image', url: string, altText?: string | null } | null } }> } } | null };
 
 export type GetProductsSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetProductsSlugsQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', handle: string } }> } };
 
-
+export const ImageFieldsFragmentDoc = `
+    fragment imageFields on Image {
+  url
+  altText
+}
+    `;
+export const ProductFieldsFragmentDoc = `
+    fragment productFields on Product {
+  id
+  title
+  handle
+}
+    `;
+export const MoneyV2FieldsFragmentDoc = `
+    fragment moneyV2Fields on MoneyV2 {
+  amount
+  currencyCode
+}
+    `;
 export const CheckoutCreateDocument = `
     mutation checkoutCreate($input: CheckoutCreateInput!) {
   checkoutCreate(input: $input) {
@@ -6759,24 +6783,14 @@ export const useCheckoutCreateMutation = <
 useCheckoutCreateMutation.fetcher = (variables: CheckoutCreateMutationVariables, options?: RequestInit['headers']) => fetcher<CheckoutCreateMutation, CheckoutCreateMutationVariables>(CheckoutCreateDocument, variables, options);
 export const GetProductDocument = `
     query getProduct($handle: String!) {
-  productByHandle(handle: $handle) {
-    id
-    title
+  product(handle: $handle) {
+    ...productFields
     description
-    handle
     images(first: 5) {
       edges {
         node {
-          originalSrc
-          thumbnail: transformedSrc(maxWidth: 150)
-          altText
+          ...imageFields
         }
-      }
-    }
-    priceRange {
-      minVariantPrice {
-        amount
-        currencyCode
       }
     }
     options(first: 5) {
@@ -6791,11 +6805,10 @@ export const GetProductDocument = `
           title
           availableForSale
           priceV2 {
-            amount
+            ...moneyV2Fields
           }
           image {
-            altText
-            originalSrc
+            ...imageFields
           }
           selectedOptions {
             name
@@ -6811,21 +6824,14 @@ export const GetProductDocument = `
           products(first: 5) {
             edges {
               node {
-                title
-                handle
-                id
+                ...productFields
                 priceRange {
                   minVariantPrice {
-                    amount
+                    ...moneyV2Fields
                   }
                 }
-                images(first: 1) {
-                  edges {
-                    node {
-                      originalSrc
-                      altText
-                    }
-                  }
+                featuredImage {
+                  ...imageFields
                 }
               }
             }
@@ -6835,7 +6841,9 @@ export const GetProductDocument = `
     }
   }
 }
-    `;
+    ${ProductFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}
+${MoneyV2FieldsFragmentDoc}`;
 export const useGetProductQuery = <
       TData = GetProductQuery,
       TError = unknown
@@ -6857,34 +6865,28 @@ useGetProductQuery.getKey = (variables: GetProductQueryVariables) => ['getProduc
 useGetProductQuery.fetcher = (variables: GetProductQueryVariables, options?: RequestInit['headers']) => fetcher<GetProductQuery, GetProductQueryVariables>(GetProductDocument, variables, options);
 export const GetProductsInCollectionDocument = `
     query getProductsInCollection($handle: String!) {
-  collectionByHandle(handle: $handle) {
+  collection(handle: $handle) {
     title
-    products(first: 25) {
+    products(first: 4) {
       edges {
         node {
-          id
-          title
+          ...productFields
           priceRange {
             minVariantPrice {
-              amount
-              currencyCode
+              ...moneyV2Fields
             }
           }
-          handle
-          images(first: 5) {
-            edges {
-              node {
-                altText
-                originalSrc
-              }
-            }
+          featuredImage {
+            ...imageFields
           }
         }
       }
     }
   }
 }
-    `;
+    ${ProductFieldsFragmentDoc}
+${MoneyV2FieldsFragmentDoc}
+${ImageFieldsFragmentDoc}`;
 export const useGetProductsInCollectionQuery = <
       TData = GetProductsInCollectionQuery,
       TError = unknown

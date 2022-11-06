@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const queryClient = new QueryClient();
   const variables = { handle: `${ctx.params?.pid}` };
   const data = await queryClient.fetchQuery(useGetProductQuery.getKey(variables), useGetProductQuery.fetcher(variables));
-  if (!data.productByHandle) {
+  if (!data.product) {
     return {
       notFound: true,
     };

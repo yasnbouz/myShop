@@ -5,15 +5,17 @@ import { IoTrashOutline } from 'react-icons/io5';
 import Link from 'next/link';
 import useShopify from '@/hooks/useShopify';
 import Image from 'next/future/image';
-import { formatCurrencyValue } from '@/utils/helpers';
 import { colord } from 'colord';
+import { useMoney } from '@/hooks/useMoney';
+import { CurrencyCode } from '@/services/shopify/generated/types';
 
 type CartProps = {
   cartOpen: boolean;
   setCartOpen: Dispatch<SetStateAction<boolean>>;
 };
-export default function Example({ cartOpen, setCartOpen }: CartProps) {
+export default function Cart({ cartOpen, setCartOpen }: CartProps) {
   const { items, removeItem, cartTotal, updateItemQuantity, checkout, isEmpty } = useShopify();
+  const { defaultFormatter } = useMoney({ amount: `0`, currencyCode: CurrencyCode.Usd });
   return (
     <Transition show={cartOpen} as={Fragment}>
       <Dialog as="div" className="fixed overflow-hidden inset-0 z-5" onClose={setCartOpen}>
@@ -62,14 +64,14 @@ export default function Example({ cartOpen, setCartOpen }: CartProps) {
                             <li key={product.id} className="py-6 flex">
                               <Link href={`/products/${product.handle}`}>
                                 <a className="relative cursor-pointer flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
-                                  <Image src={product.image.originalSrc} alt={product.image.altText} width={94} height={94} className="object-cover" />
+                                  <Image src={product.image.url} alt={product.image.altText} width={94} height={94} className="object-cover h-full" />
                                 </a>
                               </Link>
                               <div className="ml-4 flex-1 flex flex-col">
                                 <div>
                                   <div className="flex justify-between text-base font-medium text-gray-900">
                                     <h3>{product.name}</h3>
-                                    <p className="ml-4">{formatCurrencyValue.format(product.price * Number(product.quantity))}</p>
+                                    <p className="ml-4">{defaultFormatter().format(product.price * Number(product.quantity))}</p>
                                   </div>
                                   <p className="mt-1 space-x-4 flex flex-row items-center">
                                     <span className="h-6 w-6 border inline-block rounded-full" style={{ backgroundColor: colord(product.options.color).toHslString() }} />
@@ -113,7 +115,7 @@ export default function Example({ cartOpen, setCartOpen }: CartProps) {
                 <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                   <div className="flex justify-between text-base font-semibold text-gray-900">
                     <p>Subtotal</p>
-                    <p>{formatCurrencyValue.format(cartTotal)}</p>
+                    <p>{defaultFormatter().format(cartTotal)}</p>
                   </div>
                   <p className="mt-0.5 text-sm font-medium text-gray-500">Shipping and taxes calculated at checkout.</p>
                   <div className="mt-6">

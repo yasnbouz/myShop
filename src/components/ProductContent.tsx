@@ -3,8 +3,9 @@ import { useState } from 'react';
 import * as R from 'rambda';
 import clsx from 'clsx';
 import { Product } from '@/services/shopify/generated/types';
-import { formatCurrencyValue, getProductOptions } from '@/utils/helpers';
+import { getProductOptions } from '@/utils/helpers';
 import useShopify from '@/hooks/useShopify';
+import { useMoney } from '@/hooks/useMoney';
 import ProductOptions from './ProductOptions';
 
 type ProductContentProps = {
@@ -20,7 +21,8 @@ export default function ProductContent({ product }: ProductContentProps) {
       id: variant.node.id,
       handle: product.handle,
       name: product.title,
-      price: variant.node.priceV2.amount,
+      price: parseFloat(variant.node.priceV2.amount),
+      money: variant.node.priceV2,
       image: variant.node.image,
       availableForSale: variant.node.availableForSale,
       quantity: 1,
@@ -30,6 +32,8 @@ export default function ProductContent({ product }: ProductContentProps) {
   const [selectedVariant, setselectedVariant] = useState(allProductVariants[0]);
   const defaultOptions = getProductOptions(product.options);
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(defaultOptions);
+  const { localizedMoney } = useMoney(selectedVariant.money);
+
   const { addItem, inCart } = useShopify();
   const isInCart = inCart(selectedVariant.id);
   const addToCart = () => {
@@ -55,7 +59,7 @@ export default function ProductContent({ product }: ProductContentProps) {
     <div className="prose">
       <h1>{product.title}</h1>
       <p>{product.description}</p>
-      <strong className="text-lg">{formatCurrencyValue.format(selectedVariant.price)}</strong>
+      <strong className="text-lg">{localizedMoney}</strong>
       <ProductOptions product={product} selectedOptions={selectedOptions} setSelectedOptions={handleOptionChange} />
       <button
         suppressHydrationWarning

@@ -26,12 +26,13 @@
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
     "postinstall": "husky install",
     "commit": "cz",
-    "graphql-types": "rimraf src/services/shopify/generated && graphql-codegen --config codegen.ts",
+    "graphql-types": "rimraf src/services/shopify/generated && graphql-codegen",
     "storybook": "start-storybook -p 6006 --no-open",
     "build-storybook": "build-storybook",
     "e2e:test": "playwright test",
     "e2e:codegen": "playwright codegen http://localhost:3000/",
-    "e2e:report": "playwright show-report"
+    "e2e:report": "playwright show-report",
+    "analyze": "cross-env ANALYZE=true pnpm build"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
@@ -66,6 +67,7 @@
     "@graphql-codegen/typescript": "2.8.1",
     "@graphql-codegen/typescript-operations": "2.5.6",
     "@graphql-codegen/typescript-react-query": "4.0.4",
+    "@next/bundle-analyzer": "13.0.2",
     "@playwright/test": "1.27.1",
     "@storybook/addon-actions": "^6.5.12",
     "@storybook/addon-essentials": "^6.5.12",
@@ -83,6 +85,7 @@
     "babel-loader": "^8.2.5",
     "chromatic": "6.10.2",
     "commitizen": "4.2.5",
+    "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.24.0",
     "eslint-config-airbnb": "19.0.4",

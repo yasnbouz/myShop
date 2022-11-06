@@ -1,8 +1,11 @@
 const WindiCSS = require('windicss-webpack-plugin');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = {
+const config = {
   reactStrictMode: true,
   swcMinify: true,
   pageExtensions: ['page.tsx'],
@@ -19,3 +22,4 @@ module.exports = {
     return config;
   },
 };
+module.exports = withBundleAnalyzer(config);

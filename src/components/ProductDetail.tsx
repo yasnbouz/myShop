@@ -13,12 +13,12 @@ function ProductDetail() {
   const router = useRouter();
   const variables = { handle: `${router.query.pid}` };
   const { data, status } = useGetProductQuery(variables);
-  const product = data?.productByHandle;
+  const product = data?.product;
 
   if (status === `loading`) {
     return <p className="text-center py-8">Fetching product...</p>;
   }
-  if (!data?.productByHandle) {
+  if (!data?.product) {
     return <p className="text-center py-8">Product not found</p>;
   }
 
@@ -28,11 +28,11 @@ function ProductDetail() {
         <div className="container mx-auto px-4 py-16">
           <div className="flex flex-col space-y-4 md:items-center lg:(flex-row space-y-0 items-start space-x-8) xl:(space-x-20)">
             <div className="w-full relative h-510px lg:(w-1/2)">
-              <Splide options={{ height: `510px` }} className="h-full rounded-3xl overflow-hidden" aria-label={`${data?.productByHandle?.title} images`}>
+              <Splide options={{ height: `510px` }} className="h-full rounded-3xl overflow-hidden" aria-label={`${data?.product?.title} images`}>
                 {product?.images.edges.map((img, index) => (
-                  <SplideSlide key={img.node.originalSrc}>
+                  <SplideSlide key={img.node.url}>
                     <Image
-                      src={`${img.node.originalSrc}`}
+                      src={`${img.node.url}`}
                       alt={`${img.node.altText}`}
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw,
@@ -54,7 +54,7 @@ function ProductDetail() {
         description={product?.description}
         openGraph={{
           url: `${defaultUrl}/${variables.handle}`,
-          images: [{ url: product?.images.edges[0].node.originalSrc, width: 800, height: 600, alt: product?.images.edges[0].node.altText as string }],
+          images: [{ url: product?.images.edges[0].node.url as string, width: 800, height: 600, alt: product?.images.edges[0].node.altText as string }],
         }}
       />
     </>

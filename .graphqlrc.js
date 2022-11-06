@@ -1,7 +1,5 @@
-const dotenv = require('dotenv');
-
-dotenv.config({ path: `.env.local` });
-
+const nextEnv = require('@next/env');
+nextEnv.loadEnvConfig(process.cwd());
 const SCHEMA_URL = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_ID}.myshopify.com/api/2021-07/graphql.json`;
 const TOKEN = `${process.env.NEXT_PUBLIC_SHOPIFY_API_TOKEN}`;
 

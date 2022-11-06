@@ -38,7 +38,6 @@ specifiers:
   commitizen: 4.2.5
   cross-env: 7.0.3
   cz-conventional-changelog: 3.3.0
-  dotenv: 16.0.3
   eslint: 8.24.0
   eslint-config-airbnb: 19.0.4
   eslint-config-next: 12.3.1
@@ -59,7 +58,7 @@ specifiers:
   rambda: 6.9.0
   react: 18.2.0
   react-dom: 18.2.0
-  react-icons: 4.4.0
+  react-icons: 4.6.0
   react-use-cart: 1.13.0
   rimraf: 3.0.2
   sharp: 0.31.1
@@ -78,13 +77,12 @@ dependencies:
   '@tanstack/react-query-devtools': 4.14.1_mr54dne27lnoplqapf6eiuempu
   clsx: 1.2.1
   colord: 2.9.3
-  dotenv: 16.0.3
   next: 12.3.1_6tziyx3dehkoeijunclpkpolha
   next-seo: 5.5.0_azq6kxkn3od7qdylwkyksrwopy
   rambda: 6.9.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-icons: 4.4.0_react@18.2.0
+  react-icons: 4.6.0_react@18.2.0
   react-use-cart: 1.13.0_react@18.2.0
 
 devDependencies:
@@ -7395,6 +7393,7 @@ packages:
   /dotenv/16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
+    dev: true
 
   /dotenv/8.6.0:
     resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
@@ -12487,8 +12486,8 @@ packages:
       react-is: 17.0.2
     dev: true
 
-  /react-icons/4.4.0_react@18.2.0:
-    resolution: {integrity: sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==}
+  /react-icons/4.6.0_react@18.2.0:
+    resolution: {integrity: sha512-rR/L9m9340yO8yv1QT1QurxWQvWpbNHqVX0fzMln2HEb9TEIrQRGsqiNFQfiv9/JEUbyHmHPlNTB2LWm2Ttz0g==}
     peerDependencies:
       react: '*'
     dependencies:

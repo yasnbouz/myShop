@@ -58,7 +58,6 @@ specifiers:
   rambda: 6.9.0
   react: 18.2.0
   react-dom: 18.2.0
-  react-icons: 4.6.0
   react-use-cart: 1.13.0
   rimraf: 3.0.2
   sharp: 0.31.1
@@ -82,7 +81,6 @@ dependencies:
   rambda: 6.9.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-icons: 4.6.0_react@18.2.0
   react-use-cart: 1.13.0_react@18.2.0
 
 devDependencies:
@@ -12485,14 +12483,6 @@ packages:
       react-dom: 18.2.0_react@18.2.0
       react-is: 17.0.2
     dev: true
-
-  /react-icons/4.6.0_react@18.2.0:
-    resolution: {integrity: sha512-rR/L9m9340yO8yv1QT1QurxWQvWpbNHqVX0fzMln2HEb9TEIrQRGsqiNFQfiv9/JEUbyHmHPlNTB2LWm2Ttz0g==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /react-inspector/5.1.1_react@18.2.0:
     resolution: {integrity: sha512-GURDaYzoLbW8pMGXwYPDBIv6nqei4kK7LPRZ9q9HCZF54wqXz/dnylBp/kfE9XmekBhHvLDdcYeyIwSrvtOiWg==}

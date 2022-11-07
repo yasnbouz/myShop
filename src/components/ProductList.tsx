@@ -5,7 +5,7 @@ function ProductList() {
   const { data } = useGetProductsInCollectionQuery({
     handle: `frontpage`,
   });
-  const products = data?.collectionByHandle?.products.edges ?? [];
+  const products = data?.collection?.products.edges ?? [];
   return (
     <div className="bg-[white]">
       <section className="container mx-auto px-4 py-16">

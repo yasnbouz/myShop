@@ -1,4 +1,4 @@
-import { Product } from '@/services/shopify/generated/types';
+import { ProductOption } from '@/services/shopify/generated/types';
 import { colord, extend } from 'colord';
 import namesPlugin from 'colord/plugins/names';
 
@@ -8,15 +8,15 @@ import Swatch from './Swatch';
 extend([namesPlugin]);
 
 type ProductOptionsProps = {
-  product: Product;
+  options: ProductOption[];
   selectedOptions: SelectedOptions;
   setSelectedOptions(name: string, value: string): void;
 };
 
-export default function ProductOptions({ product, selectedOptions, setSelectedOptions }: ProductOptionsProps) {
+export default function ProductOptions({ options, selectedOptions, setSelectedOptions }: ProductOptionsProps) {
   return (
     <div>
-      {product.options.map((option) => (
+      {options.map((option) => (
         <div key={option.id}>
           <h2 className="uppercase">{option.name}</h2>
           <menu className="flex flex-row flex-wrap gap-4">

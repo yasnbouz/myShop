@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import { AiOutlineCheck } from 'react-icons/ai';
 
 type SwatchProps = {
   color: string;
@@ -24,7 +23,9 @@ export default function Swatch({ setSelectedOptions, value, color, active, optio
     >
       {color && active && (
         <span className="flex justify-center items-center">
-          <AiOutlineCheck aria-hidden className="text-amber-500" size="24px" />
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
         </span>
       )}
       {!color ? value : null}

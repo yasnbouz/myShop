@@ -1,24 +1,7 @@
 query getProduct($handle: String!) {
-  productByHandle(handle: $handle) {
-    id
-    title
+  product(handle: $handle) {
+    ...productFields
     description
-    handle
-    images(first: 5) {
-      edges {
-        node {
-          originalSrc
-          thumbnail: transformedSrc(maxWidth: 150)
-          altText
-        }
-      }
-    }
-    priceRange {
-      minVariantPrice {
-        amount
-        currencyCode
-      }
-    }
     options(first: 5) {
       id
       name
@@ -31,11 +14,10 @@ query getProduct($handle: String!) {
           title
           availableForSale
           priceV2 {
-            amount
+            ...moneyV2Fields
           }
           image {
-            altText
-            originalSrc
+            ...imageFields
           }
           selectedOptions {
             name
@@ -51,21 +33,14 @@ query getProduct($handle: String!) {
           products(first: 5) {
             edges {
               node {
-                title
-                handle
-                id
+                ...productFields
                 priceRange {
                   minVariantPrice {
-                    amount
+                    ...moneyV2Fields
                   }
                 }
-                images(first: 1) {
-                  edges {
-                    node {
-                      originalSrc
-                      altText
-                    }
-                  }
+                featuredImage {
+                  ...imageFields
                 }
               }
             }
@@ -74,4 +49,17 @@ query getProduct($handle: String!) {
       }
     }
   }
+}
+fragment imageFields on Image {
+  url
+  altText
+}
+fragment productFields on Product {
+  id
+  title
+  handle
+}
+fragment moneyV2Fields on MoneyV2 {
+  amount
+  currencyCode
 }

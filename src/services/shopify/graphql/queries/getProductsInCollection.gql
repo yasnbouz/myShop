@@ -1,28 +1,33 @@
 query getProductsInCollection($handle: String!) {
-  collectionByHandle(handle: $handle) {
+  collection(handle: $handle) {
     title
-    products(first: 25) {
+    products(first: 4) {
       edges {
         node {
-          id
-          title
+          ...productFields
           priceRange {
             minVariantPrice {
-              amount
-              currencyCode
+              ...moneyV2Fields
             }
           }
-          handle
-          images(first: 5) {
-            edges {
-              node {
-                altText
-                originalSrc
-              }
-            }
+          featuredImage {
+            ...imageFields
           }
         }
       }
     }
   }
+}
+fragment imageFields on Image {
+  url
+  altText
+}
+fragment productFields on Product {
+  id
+  title
+  handle
+}
+fragment moneyV2Fields on MoneyV2 {
+  amount
+  currencyCode
 }

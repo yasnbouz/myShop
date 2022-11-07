@@ -1,11 +1,6 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
 
-import path from 'path';
-import dotenv from 'dotenv';
-
-dotenv.config({ path: path.resolve(__dirname, `.env.local`) });
-
 const config: PlaywrightTestConfig = {
   testDir: `./src`,
   /* Maximum time one test can run for. */

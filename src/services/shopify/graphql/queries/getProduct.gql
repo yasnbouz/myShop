@@ -2,13 +2,6 @@ query getProduct($handle: String!) {
   product(handle: $handle) {
     ...productFields
     description
-    images(first: 5) {
-      edges {
-        node {
-          ...imageFields
-        }
-      }
-    }
     options(first: 5) {
       id
       name

@@ -17,6 +17,7 @@ ProductPage.story = {
       query: {
         pid: `jordan-delta-2`,
       },
+      locale: `en`,
     },
   },
 };

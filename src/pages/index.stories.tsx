@@ -15,6 +15,7 @@ HomePage.story = {
       path: `/`,
       asPath: `/`,
       query: { slug: `ezfezfze` },
+      locale: `en`,
     },
   },
 };

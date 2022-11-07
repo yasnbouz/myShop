@@ -70,7 +70,7 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
                               <div className="ml-4 flex-1 flex flex-col">
                                 <div>
                                   <div className="flex justify-between text-base font-medium text-gray-900">
-                                    <h3>{product.name}</h3>
+                                    <h3>{product.title}</h3>
                                     <p className="ml-4">{defaultFormatter().format(product.price * Number(product.quantity))}</p>
                                   </div>
                                   <p className="mt-1 space-x-4 flex flex-row items-center">

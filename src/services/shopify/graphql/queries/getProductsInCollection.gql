@@ -1,7 +1,7 @@
 query getProductsInCollection($handle: String!) {
   collection(handle: $handle) {
     title
-    products(first: 4) {
+    products(first: 25) {
       edges {
         node {
           ...productFields

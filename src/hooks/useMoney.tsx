@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
-import { MoneyV2 } from '@/services/shopify/generated/types';
+import type { MoneyV2 } from '@/services/shopify/generated/types';
 
 function useLazyFormatter(locale: string, options?: Intl.NumberFormatOptions) {
   return useMemo(() => {

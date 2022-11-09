@@ -8,8 +8,9 @@ export default {
 } as ComponentMeta<typeof Product>;
 
 // eslint-disable-next-line react/function-component-definition
-export const ProductPage: ComponentStory<typeof Product> = () => <Product />;
-ProductPage.story = {
+const Template: ComponentStory<typeof Product> = () => <Product />;
+export const Jordan = Template.bind({});
+Jordan.story = {
   parameters: {
     nextRouter: {
       path: `/products/[pid]`,
@@ -17,7 +18,18 @@ ProductPage.story = {
       query: {
         pid: `jordan-delta-2`,
       },
-      locale: `en`,
+    },
+  },
+};
+export const Zoom = Template.bind({});
+Zoom.story = {
+  parameters: {
+    nextRouter: {
+      path: `/products/[pid]`,
+      asPath: `/products/zoom-Freak-3`,
+      query: {
+        pid: `zoom-Freak-3`,
+      },
     },
   },
 };

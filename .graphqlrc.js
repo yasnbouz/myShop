@@ -21,7 +21,7 @@ module.exports = {
       generates: {
         'src/services/shopify/generated/types.ts': {
           config: {
-            useTypeImports: true,
+            useTypeImports: false,
             dedupeFragments: true,
             defaultScalarType: `unknown`,
             useImplementingTypes: true,

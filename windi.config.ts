@@ -2,7 +2,7 @@ import { defineConfig } from 'windicss/helpers';
 
 export default defineConfig({
   darkMode: `class`,
-  preflight: true,
+  preflight: false,
   theme: {
     extend: {
       backgroundImage: () => ({

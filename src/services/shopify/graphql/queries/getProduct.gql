@@ -30,7 +30,7 @@ query getProduct($handle: String!) {
       edges {
         node {
           title
-          products(first: 5) {
+          products(first: 25) {
             edges {
               node {
                 ...productFields

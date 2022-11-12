@@ -6,7 +6,6 @@ import type { DehydratedState } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { Providers } from '@/providers/default';
 
-// eslint-disable-next-line import/no-unresolved
 import '@/styles/global.css';
 import 'windi.css';
 

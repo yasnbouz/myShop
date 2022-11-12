@@ -47,7 +47,6 @@
     "colord": "2.9.3",
     "next": "12.3.1",
     "next-seo": "5.14.0",
-    "rambda": "6.9.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-use-cart": "1.13.0"
@@ -68,6 +67,7 @@
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-interactions": "^6.5.13",
     "@storybook/addon-links": "^6.5.13",
+    "@storybook/addon-viewport": "6.5.13",
     "@storybook/builder-webpack5": "^6.5.13",
     "@storybook/manager-webpack5": "^6.5.13",
     "@storybook/react": "^6.5.13",

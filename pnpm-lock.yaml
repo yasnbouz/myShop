@@ -18,6 +18,7 @@ specifiers:
   '@storybook/addon-essentials': ^6.5.13
   '@storybook/addon-interactions': ^6.5.13
   '@storybook/addon-links': ^6.5.13
+  '@storybook/addon-viewport': 6.5.13
   '@storybook/builder-webpack5': ^6.5.13
   '@storybook/manager-webpack5': ^6.5.13
   '@storybook/react': ^6.5.13
@@ -53,7 +54,6 @@ specifiers:
   next-seo: 5.14.0
   next-sitemap: 3.1.30
   prettier: 2.7.1
-  rambda: 6.9.0
   react: 18.2.0
   react-dom: 18.2.0
   react-use-cart: 1.13.0
@@ -73,7 +73,6 @@ dependencies:
   colord: 2.9.3
   next: 12.3.1_mqvh5p7ejg4taogoj6tpk3gd5a
   next-seo: 5.14.0_azq6kxkn3od7qdylwkyksrwopy
-  rambda: 6.9.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-use-cart: 1.13.0_react@18.2.0
@@ -94,6 +93,7 @@ devDependencies:
   '@storybook/addon-essentials': 6.5.13_pzmuzhbte5xttpyijfkac44h2u
   '@storybook/addon-interactions': 6.5.13_ne227bvjalmk4zf5jyanirqk64
   '@storybook/addon-links': 6.5.13_biqbaboplfbrettd7655fr4n2y
+  '@storybook/addon-viewport': 6.5.13_biqbaboplfbrettd7655fr4n2y
   '@storybook/builder-webpack5': 6.5.13_5msx5wgifzd2n7nm3paor5omae
   '@storybook/manager-webpack5': 6.5.13_5msx5wgifzd2n7nm3paor5omae
   '@storybook/react': 6.5.13_u2clwvxr5k64ivd4ub6wyiekxa
@@ -12518,10 +12518,6 @@ packages:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
     dev: true
-
-  /rambda/6.9.0:
-    resolution: {integrity: sha512-yosVdGg1hNGkXPzqGiOYNEpXKjEOxzUCg2rB0l+NKdyCaSf4z+i5ojbN0IqDSezMMf71YEglI+ZUTgTffn5afw==}
-    dev: false
 
   /ramda/0.28.0:
     resolution: {integrity: sha512-9QnLuG/kPVgWvMQ4aODhsBUFKOUmnbUnsSXACv+NCQZcHbeb+v8Lodp8OVxtRULN1/xOyYLLaL6npE6dMq5QTA==}

@@ -6,15 +6,17 @@ function Header() {
   const { totalItems, cartOpen, setCartOpen } = useShopify();
 
   return (
-    <header className="bg-white border-b sticky top-0 z-4 w-full overflow-hidden">
+    <header className="bg-white border-b border-light-600 sticky top-0 z-4 w-full overflow-hidden">
       <div className="container mx-auto px-4 py-8">
         <nav aria-label="page-navigation" className="flex flex-row justify-between items-center">
           <Link href="/">
-            <a className="text-2xl font-bold cursor-pointer">
-              My<span className="text-indigo-600">Shop</span>
+            <a>
+              <span className="text-indigo-800 text-2xl font-bold">
+                My<span className="text-indigo-600">Shop</span>
+              </span>
             </a>
           </Link>
-          <button type="button" data-testid="cart" className="cursor-pointer relative" onClick={() => setCartOpen(true)}>
+          <button type="button" data-testid="cart" className="relative" onClick={() => setCartOpen(true)}>
             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
               <path
                 strokeLinecap="round"
@@ -27,7 +29,7 @@ function Header() {
               suppressHydrationWarning
               role="note"
               aria-label={`${totalItems} in the cart`}
-              className="absolute p-2 top-[-20%] right-[-60%] bg-black text-14px text-white rounded-full h-[24px] w-[24px] flex items-center justify-center overflow-hidden"
+              className="absolute p-2 top-[-20%] right-[-60%] bg-blue-gray-900 text-14px text-white rounded-full h-[24px] w-[24px] flex items-center justify-center overflow-hidden"
             >
               {totalItems}
             </span>

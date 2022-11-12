@@ -14,8 +14,6 @@ HomePage.story = {
     nextRouter: {
       path: `/`,
       asPath: `/`,
-      query: { slug: `ezfezfze` },
-      locale: `en`,
     },
   },
 };

@@ -5,7 +5,7 @@ function Hero() {
         <h1 className="font-extrabold text-black text-center bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent text-4xl sm:text-6xl md:text-7xl">
           Jamstack E-commerce
         </h1>
-        <p className="font-bold text-dark-400 text-center text-xl mt-4 sm:text-3xl md:text-4xl">Shopify Storefront with Nextjs</p>
+        <p className="font-bold text-blue-gray-800 text-center text-xl mt-4 sm:text-3xl md:text-4xl">Shopify Storefront with Nextjs</p>
       </section>
       <div className="top-0 left-0 w-250px absolute -z-1 sm:(w-400px)" aria-hidden>
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -30,5 +30,3 @@ function Hero() {
 }
 
 export default Hero;
-// background-color: #21D4FD;
-// background-image: linear-gradient(225deg, #21D4FD 0%, #B721FF 100%);

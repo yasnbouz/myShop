@@ -4,7 +4,7 @@
   -  Instead, you can edit the associated .graphql file to query for additional fields and this file will be updated when you run pnpm graphql-types.
 */
 /* eslint-disable */
-import { useMutation, useQuery, type UseMutationOptions, type UseQueryOptions } from '@tanstack/react-query';
+import { useMutation, useQuery, UseMutationOptions, UseQueryOptions } from '@tanstack/react-query';
 import { fetcher } from '../lib/shopifyClient';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -6722,7 +6722,7 @@ export type GetProductQueryVariables = Exact<{
 }>;
 
 
-export type GetProductQuery = { __typename?: 'QueryRoot', product?: { __typename?: 'Product', description: string, id: string, title: string, handle: string, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', url: string, altText?: string | null } }> }, options: Array<{ __typename?: 'ProductOption', id: string, name: string, values: Array<string> }>, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, availableForSale: boolean, priceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: string, altText?: string | null } | null, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }> }, collections: { __typename?: 'CollectionConnection', edges: Array<{ __typename?: 'CollectionEdge', node: { __typename?: 'Collection', title: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', id: string, title: string, handle: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, featuredImage?: { __typename?: 'Image', url: string, altText?: string | null } | null } }> } } }> } } | null };
+export type GetProductQuery = { __typename?: 'QueryRoot', product?: { __typename?: 'Product', description: string, id: string, title: string, handle: string, options: Array<{ __typename?: 'ProductOption', id: string, name: string, values: Array<string> }>, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, availableForSale: boolean, priceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: string, altText?: string | null } | null, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }> }, collections: { __typename?: 'CollectionConnection', edges: Array<{ __typename?: 'CollectionEdge', node: { __typename?: 'Collection', title: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', id: string, title: string, handle: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, featuredImage?: { __typename?: 'Image', url: string, altText?: string | null } | null } }> } } }> } } | null };
 
 export type ImageFieldsFragment = { __typename?: 'Image', url: string, altText?: string | null };
 
@@ -6786,13 +6786,6 @@ export const GetProductDocument = `
   product(handle: $handle) {
     ...productFields
     description
-    images(first: 5) {
-      edges {
-        node {
-          ...imageFields
-        }
-      }
-    }
     options(first: 5) {
       id
       name
@@ -6821,7 +6814,7 @@ export const GetProductDocument = `
       edges {
         node {
           title
-          products(first: 5) {
+          products(first: 25) {
             edges {
               node {
                 ...productFields
@@ -6842,8 +6835,8 @@ export const GetProductDocument = `
   }
 }
     ${ProductFieldsFragmentDoc}
-${ImageFieldsFragmentDoc}
-${MoneyV2FieldsFragmentDoc}`;
+${MoneyV2FieldsFragmentDoc}
+${ImageFieldsFragmentDoc}`;
 export const useGetProductQuery = <
       TData = GetProductQuery,
       TError = unknown
@@ -6867,7 +6860,7 @@ export const GetProductsInCollectionDocument = `
     query getProductsInCollection($handle: String!) {
   collection(handle: $handle) {
     title
-    products(first: 4) {
+    products(first: 25) {
       edges {
         node {
           ...productFields

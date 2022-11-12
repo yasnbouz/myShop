@@ -1,25 +1,24 @@
 import { useMoney } from '@/hooks/useMoney';
-import type { Product, Image } from '@/services/shopify/generated/types';
 import NextImage from 'next/future/image';
 import Link from 'next/link';
+import type { Product } from '@/services/shopify/generated/types';
 
 interface Props {
   product: Product;
 }
 function ProductCard({ product }: Props) {
-  const { title, handle } = product;
-  const { altText, url } = product.featuredImage as Image;
-  const { minVariantPrice } = product.priceRange;
-  const { localizedMoney } = useMoney(minVariantPrice);
+  const { localizedMoney } = useMoney(product.priceRange.minVariantPrice);
   return (
-    <article className="group">
-      <Link href={`/products/${handle}`}>
-        <a className="block bg-[#f6f6f6] rounded-3xl cursor-pointer overflow-hidden h-74 relative transition-opacity group-hover:opacity-75">
-          <NextImage src={url} alt={`${altText}`} width={315} height={296} className="object-cover h-full" />
+    <article className="w-full">
+      <Link href={`/products/${product?.handle}`}>
+        <a className="bg-gray-100 rounded-3xl overflow-hidden transition-opacity inline-block hover:opacity-75">
+          <NextImage src={product?.featuredImage?.url ?? ``} alt={`${product?.featuredImage?.altText}`} width={315} height={296} className="h-[300px] object-cover" />
         </a>
       </Link>
-      <h3 className="text-gray-900 text-lg font-bold mt-2 ml-4">{title}</h3>
-      <strong className="text-gray-700 text-md font-semibold mt-1 ml-4">{localizedMoney}</strong>
+      <h3 title={product?.title} className="text-blue-gray-800 text-lg font-bold px-4 truncate text-ellipsis">
+        {product?.title}
+      </h3>
+      <strong className="text-blue-gray-700 inline-block text-md font-semibold pl-4">{localizedMoney}</strong>
     </article>
   );
 }

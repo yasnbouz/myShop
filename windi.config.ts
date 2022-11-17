@@ -14,5 +14,4 @@ export default defineConfig({
     include: [`src/**/*.{ts,js,tsx,css}`],
     exclude: [`node_modules`, `.git`, `.next`],
   },
-  plugins: [require(`windicss/plugin/typography`)],
 });

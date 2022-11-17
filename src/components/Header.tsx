@@ -10,11 +10,9 @@ function Header() {
       <div className="container mx-auto px-4 py-8">
         <nav aria-label="page-navigation" className="flex flex-row justify-between items-center">
           <Link href="/">
-            <a>
-              <span className="text-indigo-800 text-2xl font-bold">
-                My<span className="text-indigo-600">Shop</span>
-              </span>
-            </a>
+            <span className="text-indigo-800 text-2xl font-bold">
+              My<span className="text-indigo-600">Shop</span>
+            </span>
           </Link>
           <button type="button" data-testid="cart" className="relative" onClick={() => setCartOpen(true)}>
             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">

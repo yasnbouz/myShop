@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import type { Product } from '@/services/shopify/generated/types';
 import useShopify from '@/hooks/useShopify';
 import { useMoney } from '@/hooks/useMoney';
-import NextImage from 'next/future/image';
+import NextImage from 'next/image';
 import { getAllVariants, getProductOptions, getSelectedVariant, getVariantBasedOnIdProp } from '@/utils/helpers';
 import { NextSeo } from 'next-seo';
 import { defaultUrl } from 'next-seo.config';

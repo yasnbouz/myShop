@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import useShopify from '@/hooks/useShopify';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import { colord } from 'colord';
 import { useMoney } from '@/hooks/useMoney';
 import { CurrencyCode } from '@/services/shopify/generated/types';
@@ -32,10 +32,8 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
   );
   const cartProducts = products.map((product) => (
     <li key={product.id} className="py-6 flex">
-      <Link href={`/products/${product.handle}`} prefetch={false}>
-        <a className="relative flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
-          <Image src={product?.image?.url ?? ``} alt={product?.image?.altText ?? ``} width={94} height={94} className="object-cover h-full" />
-        </a>
+      <Link href={`/products/${product.handle}`} prefetch={false} className="relative flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
+        <Image src={product?.image?.url ?? ``} alt={product?.image?.altText ?? ``} width={94} height={94} className="object-cover h-full" />
       </Link>
       <div className="pl-4 flex-1 flex flex-col">
         <div>

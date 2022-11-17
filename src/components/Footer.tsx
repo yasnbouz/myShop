@@ -13,8 +13,8 @@ function Footer() {
       <div className="container mx-auto px-4 py-8">
         <nav className="flex flex-wrap flex-row space-x-8 justify-center">
           {routes.map((route) => (
-            <Link href={route.href} key={route.name}>
-              <a className=" text-blue-gray-600 hover:(text-blue-gray-900)">{route.name}</a>
+            <Link href={route.href} key={route.name} className=" text-blue-gray-600 hover:(text-blue-gray-900)">
+              {route.name}
             </Link>
           ))}
         </nav>

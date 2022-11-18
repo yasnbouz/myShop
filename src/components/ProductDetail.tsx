@@ -19,7 +19,7 @@ function ProductDetail() {
   }
   return (
     <div className="bg-[white]">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-6 py-16">
         <ProductContent product={product as Product} />
       </div>
       <RecommendedProducts current={product?.id} products={product?.collections.edges[0].node.products.edges as ProductEdge[]} />

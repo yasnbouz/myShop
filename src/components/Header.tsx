@@ -7,7 +7,7 @@ function Header() {
 
   return (
     <header className="bg-white border-b border-light-600 sticky top-0 z-4 w-full overflow-hidden">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 py-8">
         <nav aria-label="page-navigation" className="flex flex-row justify-between items-center">
           <Link href="/">
             <span className="text-indigo-800 text-2xl font-bold">

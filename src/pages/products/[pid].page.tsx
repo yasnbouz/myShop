@@ -35,6 +35,5 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     props: {
       dehydratedState,
     },
-    revalidate: 10,
   };
 };
